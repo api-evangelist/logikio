@@ -1,0 +1,27 @@
+aid: logikio
+name: Logik.io
+description: 'Logik.io is a company surfaced as a portfolio company of emergence-capital and added to
+  the API Evangelist network as a stub for enrichment. Sector: sales-tech. This profile is a lead awaiting
+  the enrichment pipeline.'
+url: https://raw.githubusercontent.com/api-evangelist/logikio/refs/heads/main/apis.yml
+x-type: company
+x-source: vc-portfolio
+x-backed-by:
+- emergence-capital
+x-tier: stub
+x-tier-reason: portfolio-lead
+specificationVersion: '0.20'
+created: '2026-07-17'
+modified: '2026-07-17'
+tags:
+- Company
+- Sales Tech
+apis: []
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+common:
+- type: Website
+  url: https://www.logik.io
