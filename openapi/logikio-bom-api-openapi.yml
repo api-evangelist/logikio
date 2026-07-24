@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export BOM API
+  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
+  version: 1.0.0
+  contact:
+    email: support@logik.io
+servers:
+- url: https://{tenant}.{sector}.logik.io
+  description: Logik Environment
+  variables:
+    tenant:
+      default: example
+      description: Logik.io tenant
+    sector:
+      default: test
+      description: Logik.io sector
+security:
+- bearerAuth: []
+tags:
+- name: BOM
+  description: APIs to retrieve BOM information
+paths:
+  /{uuid}/bom/sales:
+    get:
+      tags:
+      - BOM
+      summary: Get Sales BOM with the given uuid for current state of Configuration
+      operationId: getSalesBOM
+      parameters:
+      - name: uuid
+        in: path
+        description: Unique Configuration ID Value
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number of data to be returned in response
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Size of Paged Data
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        description: Specify property and order{asc|desc} of sort in format field,asc[desc]
+        schema:
+          type: string
+      responses:
+        200:
+          description: Return Sales BOM snapshot of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        400:
+          description: Returns Error Message from the server if invalid uuid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /{uuid}/bom/{custom}:
+    get:
+      tags:
+      - BOM
+      summary: Get Custom BOM type line items defined in the admin
+      operationId: getCustomBOM
+      parameters:
+      - name: custom
+        in: path
+        description: Custom BOM Type name
+        required: true
+        schema:
+          type: string
+      - name: uuid
+        in: path
+        description: Unique Configuration ID Value
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number of data to be returned in response
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Size of Paged Data
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        description: Specify property and order{asc|desc} of sort in format field,asc[desc]
+        schema:
+          type: string
+      responses:
+        200:
+          description: Return Sales BOM snapshot of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        400:
+          description: Returns Error Message from the server if invalid uuid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /{uuid}/bom/manufacturing:
+    get:
+      tags:
+      - BOM
+      summary: Get Manufacturing BOM with the given uuid for current state of Configuration
+      operationId: getManufacturingBOM
+      parameters:
+      - name: uuid
+        in: path
+        description: Unique Configuration ID Value
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number of data to be returned in response
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Size of Paged Data
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        description: Specify property and order{asc|desc} of sort in format field,asc[desc]
+        schema:
+          type: string
+      responses:
+        200:
+          description: Return Manufacturing BOM snapshot of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        400:
+          description: Returns Error Message from the server if invalid uuid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - BearerAuth: []
+  /{uuid}/bom/:
+    get:
+      tags:
+      - BOM
+      summary: Get Entire BOM with the given uuid for current state of Configuration
+      operationId: getAllBOM
+      parameters:
+      - name: uuid
+        in: path
+        description: Unique Configuration ID Value
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number of data to be returned in response
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Size of Paged Data
+        schema:
+          type: integer
+      - name: sort
+        in: query
+        description: Specify property and order{asc|desc} of sort in format field,asc[desc]
+        schema:
+          type: string
+      - name: bomType
+        in: query
+        description: Pass comma separated list of bom types to be returned
+        schema:
+          type: string
+      responses:
+        200:
+          description: Return Entire BOM snapshot of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        400:
+          description: Returns Error Message from the server if invalid uuid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - BearerAuth: []
+components:
+  schemas:
+    BOMResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        pageable:
+          type: object
+          properties:
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              type: integer
+            pageNumber:
+              type: integer
+            pageSize:
+              type: integer
+            paged:
+              type: boolean
+            unpaged:
+              type: boolean
+        totalPages:
+          type: integer
+        totalElements:
+          type: integer
+        last:
+          type: boolean
+        size:
+          type: integer
+        number:
+          type: integer
+        numberOfElements:
+          type: integer
+        first:
+          type: boolean
+        empty:
+          type: boolean
+        total:
+          type: integer
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        selectionType:
+          type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Admin API Bearer Token

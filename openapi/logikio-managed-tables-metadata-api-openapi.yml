@@ -1,0 +1,214 @@
+openapi: 3.0.3
+info:
+  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Metadata API
+  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
+  version: 1.0.0
+  contact:
+    email: support@logik.io
+servers:
+- url: https://{tenant}.{sector}.logik.io
+  description: Logik Environment
+  variables:
+    tenant:
+      default: example
+      description: Logik.io tenant
+    sector:
+      default: test
+      description: Logik.io sector
+security:
+- bearerAuth: []
+tags:
+- name: Managed Tables > Metadata
+  description: Working with Table Metadata
+paths:
+  /api/managedTables/v1/managedTables/{tableName}/metadata:
+    get:
+      tags:
+      - Managed Tables > Metadata
+      summary: Get Table Metadata
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedTableCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/managedTables/v1/managedTables/{tableName}/metadata/columns:
+    patch:
+      tags:
+      - Managed Tables > Metadata
+      summary: Add / Remove Table Metadata Column(s)
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataPatch'
+      responses:
+        '202':
+          description: Successful response
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/managedTables/v1/managedTables/{tableName}/metadata/columns/{columnName}:
+    delete:
+      tags:
+      - Managed Tables > Metadata
+      summary: Delete Table Metadata Column
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      - name: columnName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Column in the Managed Table
+      responses:
+        '204':
+          description: Successful response
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    ColumnMetadata:
+      type: object
+      required:
+      - name
+      - description
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - text
+          - number
+        description:
+          type: string
+    MetadataPatch:
+      type: object
+      properties:
+        deleted:
+          type: array
+          items:
+            type: string
+        added:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+    ManagedTableCreateResponse:
+      properties:
+        dateCreated:
+          type: string
+        dateModified:
+          type: string
+        lastModifiedBy:
+          type: string
+        name:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        description:
+          type: string
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    Column:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ColumnMetadata'
+      - properties:
+          orderNumber:
+            type: integer
+  responses:
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-82DB4CF583054DF0930EDE9BE
+            errorMessage: An unexpected error occurred.
+            timestamp: '2023-05-31T02:42:40.087287033Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-C2BD5E131995442CABF255BCD
+            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
+            timestamp: '2023-05-31T02:07:58.447433023Z'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Admin API Bearer Token

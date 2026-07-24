@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Export Tables API
+  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
+  version: 1.0.0
+  contact:
+    email: support@logik.io
+servers:
+- url: https://{tenant}.{sector}.logik.io
+  description: Logik Environment
+  variables:
+    tenant:
+      default: example
+      description: Logik.io tenant
+    sector:
+      default: test
+      description: Logik.io sector
+security:
+- bearerAuth: []
+tags:
+- name: Managed Tables > Export Tables
+  description: Export and Download Tables
+paths:
+  /api/managedTables/v3/managedTables/{tableName}/export:
+    post:
+      tags:
+      - Managed Tables > Export Tables
+      summary: Export Table Data - Initiate Request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: '{}'
+              description: Empty Object to POST
+              enum:
+              - {}
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/managedTables/v2/job/{tableExportJobId}:
+    get:
+      tags:
+      - Managed Tables > Export Tables
+      summary: Export Table - Get Job Status
+      parameters:
+      - name: tableExportJobId
+        in: path
+        schema:
+          type: integer
+        required: true
+        example: '16'
+        description: Job Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/managedTables/v2/job/{tableExportJobId}/file:
+    get:
+      tags:
+      - Managed Tables > Export Tables
+      summary: Export Table - Download File
+      parameters:
+      - name: tableExportJobId
+        in: path
+        schema:
+          type: integer
+        required: true
+        example: '16'
+        description: Job Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    JobResponse:
+      properties:
+        id:
+          type: number
+        started:
+          type: string
+          format: date-time
+        jobType:
+          type: string
+        status:
+          type: string
+        finished:
+          type: string
+          format: date-time
+          nullable: true
+      example:
+        id: 6,
+        started: '2023-05-31T02:51:16.550561712Z'
+        finished: null
+        jobType: TABLE_EXPORT
+        status: STARTED
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+  responses:
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-82DB4CF583054DF0930EDE9BE
+            errorMessage: An unexpected error occurred.
+            timestamp: '2023-05-31T02:42:40.087287033Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-C2BD5E131995442CABF255BCD
+            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
+            timestamp: '2023-05-31T02:07:58.447433023Z'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Admin API Bearer Token

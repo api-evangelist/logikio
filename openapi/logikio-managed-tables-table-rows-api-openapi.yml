@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Table Rows API
+  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
+  version: 1.0.0
+  contact:
+    email: support@logik.io
+servers:
+- url: https://{tenant}.{sector}.logik.io
+  description: Logik Environment
+  variables:
+    tenant:
+      default: example
+      description: Logik.io tenant
+    sector:
+      default: test
+      description: Logik.io sector
+security:
+- bearerAuth: []
+tags:
+- name: Managed Tables > Table Rows
+  description: Working with individual Table Rows
+paths:
+  /api/managedTables/v1/managedTables/{tableName}:
+    post:
+      tags:
+      - Managed Tables > Table Rows
+      summary: Add new row to Table
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rows:
+                  type: array
+                  items:
+                    type: object
+                    additionalProperties:
+                      type: string
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnPatch'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/managedTables/v1/managedTables/{tableName}/{rowId}:
+    get:
+      tags:
+      - Managed Tables > Table Rows
+      summary: Get Table Data Row
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      - name: rowId
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Row Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+    patch:
+      tags:
+      - Managed Tables > Table Rows
+      summary: Update Table Data Row
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ColumnPatch'
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      - name: rowId
+        in: path
+        schema:
+          type: integer
+        required: true
+        description: Row Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnWithId'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+    delete:
+      tags:
+      - Managed Tables > Table Rows
+      summary: Delete Table Data Row
+      parameters:
+      - name: tableName
+        in: path
+        schema:
+          type: string
+        required: true
+        description: Name of the Managed Table
+      - name: rowId
+        in: path
+        schema:
+          type: integer
+        required: true
+        description: Row Id
+      responses:
+        '204':
+          description: The row was deleted successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-82DB4CF583054DF0930EDE9BE
+            errorMessage: An unexpected error occurred.
+            timestamp: '2023-05-31T02:42:40.087287033Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-C2BD5E131995442CABF255BCD
+            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
+            timestamp: '2023-05-31T02:07:58.447433023Z'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+  schemas:
+    ColumnWithId:
+      type: object
+      properties:
+        ID:
+          type: number
+        additionalProperties:
+          type: string
+    ColumnResponse:
+      type: object
+      allOf:
+      - properties:
+          DATE_MODIFIED:
+            type: string
+          DATE_CREATED:
+            type: string
+      - $ref: '#/components/schemas/ColumnWithId'
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ColumnPatch:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnWithId'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Admin API Bearer Token

@@ -1,0 +1,368 @@
+openapi: 3.0.3
+info:
+  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Runtime - Bill of Materials API
+  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
+  version: 1.0.0
+  contact:
+    email: support@logik.io
+servers:
+- url: https://{tenant}.{sector}.logik.io
+  description: Logik Environment
+  variables:
+    tenant:
+      default: example
+      description: Logik.io tenant
+    sector:
+      default: test
+      description: Logik.io sector
+security:
+- bearerAuth: []
+tags:
+- name: Runtime - Bill of Materials
+  description: Get Bill of Materials (BOM) information for a given configuration UUID.
+paths:
+  /api/{uuid}/bom:
+    get:
+      tags:
+      - Runtime - Bill of Materials
+      summary: Get BOM
+      description: Get BOM with the given uuid for current state of Configuration
+      operationId: getAllBomV2
+      parameters:
+      - $ref: '#/components/parameters/headerOrigin'
+      - $ref: '#/components/parameters/ConfigurationUUID'
+      - $ref: '#/components/parameters/queryPage'
+      - $ref: '#/components/parameters/queryLimit'
+      - $ref: '#/components/parameters/querySort'
+      - name: bomType
+        in: query
+        description: Pass comma separated list of bom types to be returned
+        schema:
+          type: string
+      responses:
+        200:
+          description: Return Entire BOM snapshot of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/{uuid}/bom/sales:
+    get:
+      tags:
+      - Runtime - Bill of Materials
+      summary: Get Sales BOM
+      description: Get Sales BOM with the given uuid for current state of Configuration
+      operationId: getSalesBomV2
+      parameters:
+      - $ref: '#/components/parameters/headerOrigin'
+      - $ref: '#/components/parameters/ConfigurationUUID'
+      - $ref: '#/components/parameters/queryPage'
+      - $ref: '#/components/parameters/queryLimit'
+      - $ref: '#/components/parameters/querySort'
+      responses:
+        200:
+          description: Return current sales BOM of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/{uuid}/bom/manufacturing:
+    get:
+      tags:
+      - Runtime - Bill of Materials
+      summary: Get Manufacturing BOM
+      description: Get Manufacturing BOM with the given uuid for current state of Configuration.
+      operationId: getManufacturingBomV2
+      parameters:
+      - $ref: '#/components/parameters/headerOrigin'
+      - $ref: '#/components/parameters/ConfigurationUUID'
+      - $ref: '#/components/parameters/queryPage'
+      - $ref: '#/components/parameters/queryLimit'
+      - $ref: '#/components/parameters/querySort'
+      responses:
+        200:
+          description: Return Manufacturing BOM snapshot of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /api/{uuid}/bom/{custom}:
+    get:
+      tags:
+      - Runtime - Bill of Materials
+      summary: Get Custom BOM
+      description: Get Custom BOM type line items defined in the admin
+      operationId: getBomByNameV2
+      parameters:
+      - $ref: '#/components/parameters/headerOrigin'
+      - name: custom
+        in: path
+        description: Custom BOM Type name
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ConfigurationUUID'
+      - $ref: '#/components/parameters/queryPage'
+      - $ref: '#/components/parameters/queryLimit'
+      - $ref: '#/components/parameters/querySort'
+      responses:
+        200:
+          description: Returns BOM snapshot of Configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BOMResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+components:
+  parameters:
+    queryPage:
+      in: query
+      name: page
+      description: Page number of results to return
+      schema:
+        type: number
+        default: 0
+      required: true
+    queryLimit:
+      in: query
+      name: limit
+      description: Size of the paged data results
+      schema:
+        type: number
+        default: 100
+      required: true
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
+      required: true
+    querySort:
+      in: query
+      name: sort
+      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
+      schema:
+        type: string
+        default: modified%2CDESC
+      required: true
+    ConfigurationUUID:
+      in: path
+      name: uuid
+      description: Unique Configuration ID Value
+      required: true
+      schema:
+        type: string
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        selectionType:
+          type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    BOMResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        pageable:
+          type: object
+          properties:
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              type: integer
+            pageNumber:
+              type: integer
+            pageSize:
+              type: integer
+            paged:
+              type: boolean
+            unpaged:
+              type: boolean
+        totalPages:
+          type: integer
+        totalElements:
+          type: integer
+        last:
+          type: boolean
+        size:
+          type: integer
+        number:
+          type: integer
+        numberOfElements:
+          type: integer
+        first:
+          type: boolean
+        empty:
+          type: boolean
+        total:
+          type: integer
+      example:
+        total: 350
+        pageable:
+          sort:
+            empty: false
+            sorted: true
+            unsorted: false
+          offset: 0
+          pageNumber: 0
+          pageSize: 20
+          paged: true
+          unpaged: false
+        totalPages: 1
+        totalElements: 2
+        last: true
+        size: 20
+        number: 0
+        sort:
+          empty: false
+          sorted: true
+          unsorted: false
+        numberOfElements: 2
+        first: true
+        empty: false
+        products:
+        - id: SSM
+          uom: ''
+          name: Single Motherboard
+          type: accessory
+          level: 0
+          price: 125
+          bomType: Sales
+          extPrice: 125
+          quantity: 1
+          partnerId: 01t6e000009gRTpAAM
+          externalId: ''
+          description: ''
+          orderNumber: 10
+          productCode: SSM
+          rollUpPrice: 350
+          productFamily: ''
+          uniqueIdentifier: motherboard
+        - id: CPU7320GHZRYZ3
+          uom: ''
+          name: AMD Ryzen 3 7320U
+          type: accessory
+          level: 1
+          price: 225
+          bomType: SALES
+          extPrice: 225
+          extended:
+            watts: '150'
+          quantity: 1
+          partnerId: 01t6e000009bOfYAAU
+          externalId: ''
+          description: ''
+          productCode: CPU7320GHZRYZ3
+          rollUpPrice: 225
+          parentProduct: motherboard
+          productFamily: Hardware
+          effectiveParent: motherboard
+  responses:
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Admin API Bearer Token
