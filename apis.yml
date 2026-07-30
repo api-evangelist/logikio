@@ -1,8 +1,27 @@
 aid: logikio
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/logikio.png
 name: Logik.io
-description: 'Logik.io is a company surfaced as a portfolio company of emergence-capital and added to
-  the API Evangelist network as a stub for enrichment. Sector: sales-tech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Logik.io is a headless, composable, API-first CPQ (Configure, Price, Quote) and
+  product-configuration engine. It powers guided configuration, pricing, and quoting for complex
+  products across Salesforce CPQ/Commerce and any headless front end, and computes Sales,
+  Manufacturing, and Custom Bills of Materials. The platform exposes versioned Runtime APIs
+  (start/update/save configurations, access Sets, retrieve BOMs) and Admin APIs (blueprints,
+  fields, rules, managed data tables, jobs), authenticated with HTTP Bearer Runtime and Admin
+  tokens. Logik.io was acquired by ServiceNow and is now also marketed as ServiceNow CPQ /
+  Logik.ai; the developer surface at api-docs.logik.io and github.com/logikioopensource remains
+  live and independent.'
 url: https://raw.githubusercontent.com/api-evangelist/logikio/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,11 +31,130 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Sales Tech
-apis: []
+- CPQ
+- Configure Price Quote
+- Product Configuration
+- Bill of Materials
+- Ecommerce
+- Salesforce
+- API-First
+apis:
+- aid: logikio:logikio-blueprint-export-api
+  name: Logik.io Blueprint > Export API
+  description: Export Blueprints
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Blueprint > Export
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-blueprint-export-api-openapi.yml
+- aid: logikio:logikio-blueprint-import-api
+  name: Logik.io Blueprint > Import API
+  description: Import Blueprints
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Blueprint > Import
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-blueprint-import-api-openapi.yml
+- aid: logikio:logikio-bom-api
+  name: Logik.io BOM API
+  description: APIs to retrieve BOM information
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - BOM
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-bom-api-openapi.yml
+- aid: logikio:logikio-configuration-api
+  name: Logik.io Configuration API
+  description: APIs to operate on Configuration blueprint to generate BOM
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-configuration-api-openapi.yml
+- aid: logikio:logikio-configuration-v2-api
+  name: Logik.io Configuration (V2) API
+  description: >-
+    Creating new configurations, reconfiguring existing configurations, making updates to a configuration
+    and saving changes.
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Configuration (V2)
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-configuration-v2-api-openapi.yml
+- aid: logikio:logikio-managed-tables-export-tables-api
+  name: Logik.io Managed Tables > Export Tables API
+  description: Export and Download Tables
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Managed Tables > Export Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-managed-tables-export-tables-api-openapi.yml
+- aid: logikio:logikio-managed-tables-import-tables-api
+  name: Logik.io Managed Tables > Import Tables API
+  description: Import and Replace Tables
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Managed Tables > Import Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-managed-tables-import-tables-api-openapi.yml
+- aid: logikio:logikio-managed-tables-metadata-api
+  name: Logik.io Managed Tables > Metadata API
+  description: Working with Table Metadata
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Managed Tables > Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-managed-tables-metadata-api-openapi.yml
+- aid: logikio:logikio-managed-tables-table-rows-api
+  name: Logik.io Managed Tables > Table Rows API
+  description: Working with individual Table Rows
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Managed Tables > Table Rows
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-managed-tables-table-rows-api-openapi.yml
+- aid: logikio:logikio-managed-tables-tables-api
+  name: Logik.io Managed Tables > Tables API
+  description: Listing all Tables and working with indiviudal Tables
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Managed Tables > Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-managed-tables-tables-api-openapi.yml
+- aid: logikio:logikio-runtime-bill-of-materials-api
+  name: Logik.io Runtime - Bill of Materials API
+  description: Get Bill of Materials (BOM) information for a given configuration UUID.
+  humanURL: https://api-docs.logik.io/
+  baseURL: https://{tenant}.{sector}.logik.io
+  tags:
+  - Runtime - Bill of Materials
+  properties:
+  - type: OpenAPI
+    url: openapi/logikio-runtime-bill-of-materials-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +163,44 @@ maintainers:
 common:
 - type: Website
   url: https://www.logik.io
+- type: Documentation
+  url: https://api-docs.logik.io/
+- type: APIReference
+  url: https://api-docs.logik.io/
+- type: GitHubOrganization
+  url: https://github.com/logikioopensource
+- type: Postman
+  url: postman/logikio-runtime.postman_collection.json
+- type: Authentication
+  url: authentication/logikio-authentication.yml
+- type: Conventions
+  url: conventions/logikio-conventions.yml
+- type: ErrorCatalog
+  url: errors/logikio-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/logikio-lifecycle.yml
+- type: Conformance
+  url: conformance/logikio-conformance.yml
+- type: Compliance
+  url: conformance/logikio-conformance.yml
+- type: DataModel
+  url: data-model/logikio-data-model.yml
+- type: Sandbox
+  url: sandbox/logikio-sandbox.yml
+- type: Packages
+  url: packages/logikio-packages.yml
+- type: MCPServer
+  url: mcp/logikio-mcp.yml
+- type: LLMsTxt
+  url: llms/logikio-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/logikio-agentic-access.yml
+- type: DomainSecurity
+  url: security/logikio-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 25
+  pass: local-v1
