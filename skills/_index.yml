@@ -1,0 +1,11 @@
+generated: '2026-07-20'
+method: generated
+skills:
+  - file: logikio-configure-and-get-bom.md
+    name: Configure a product and retrieve its BOM (Runtime v2)
+    api: openapi/logikio-runtime-v2-openapi-original.yml
+    operations: [startConfigV2, updateConfigByUuidV2, getConfigByUuidV2, getSalesBomV2]
+  - file: logikio-manage-tables.md
+    name: Manage a Logik.io managed data table (Admin API)
+    api: openapi/logikio-admin-managed-tables-openapi-original.yml
+    operations: []

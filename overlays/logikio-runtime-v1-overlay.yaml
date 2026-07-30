@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Logik Configurator Runtime APIs (v1)
+  version: 1.0.0
+extends: openapi/logikio-runtime-v1-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-20'
+      x-apievangelist-provider: logikio
+      x-apievangelist-artifacts:
+        authentication: authentication/logikio-authentication.yml
+        conventions: conventions/logikio-conventions.yml
+        errors: errors/logikio-problem-types.yml
+        data-model: data-model/logikio-data-model.yml
+  - target: $.info
+    update:
+      x-apievangelist-auth: 'http-bearer (Runtime/Admin tokens; Origin allow-list required on runtime calls)'

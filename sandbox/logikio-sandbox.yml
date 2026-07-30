@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://api-docs.logik.io/
+# Logik.io separates environments by the {sector} segment of the host:
+#   https://{tenant}.{sector}.logik.io  where sector is e.g. "test" (non-prod) vs "prod".
+# Each spec's server default sector is "test", i.e. the documented sandbox/non-prod sector.
+environments:
+  model: host-segment
+  host_template: https://{tenant}.{sector}.logik.io
+  variables:
+    tenant:
+      description: Logik.io tenant / customer ID assigned by the service provider.
+      example: example
+    sector:
+      description: Environment sector segment. "test" is the documented non-production sector.
+      test_default: test
+      production: prod
+test_credentials:
+  runtime_token:
+    note: Create a Runtime Token in Logik.io Admin > Runtime Clients; must allow-list the request Origin.
+  admin_token:
+    note: Register an Admin API Key in Logik.io Admin > Utilities > Admin API Keys.
+fixtures:
+  postman_collection: postman/logikio-runtime.postman_collection.json
+  note: Logik ships a Postman collection of the common Runtime APIs for testing against a test sector.
+published_test_values: []  # No magic/static test values are published; tenants provision their own.

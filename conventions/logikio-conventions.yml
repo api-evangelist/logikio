@@ -1,0 +1,62 @@
+generated: '2026-07-20'
+method: searched
+source: https://api-docs.logik.io/
+# Cross-cutting request/response semantics for the Logik.io Runtime and Admin APIs.
+# Derived from the four OpenAPI specs and the api-docs.logik.io reference.
+authentication:
+  style: http-bearer
+  tokens:
+    - name: Runtime Token
+      use: Configuration and BOM APIs
+      created_in: Logik.io Admin > Runtime Clients
+      note: Must allow-list the Origin passed as a Header parameter on every request.
+    - name: Admin Token
+      use: Admin APIs (Blueprints, Fields, Rules, Managed Tables, Jobs)
+      created_in: Logik.io Admin > Utilities > Admin API Keys
+  ref: authentication/logikio-authentication.yml
+versioning:
+  scheme: hybrid
+  path: URI path segments carry the version (e.g. /api/managedTables/v1, v2, v3; /api/admin/v1, v2).
+  content_type: |
+    Runtime configuration APIs are also versioned by media type:
+    v1 = application/json; v2 = application/vnd.logik.cfg-v2+json (required for Product Picker Fields).
+  current:
+    runtime: v2 (2.1.0)
+    runtime_v1: 2.0.0
+    admin_managed_tables: v3 export / v2 tables
+  ref: lifecycle/logikio-lifecycle.yml
+pagination:
+  style: page-number
+  params:
+    - name: page
+      in: query
+      description: Zero/one-based page index (Spring Pageable style).
+    - name: limit
+      in: query
+      description: Page size.
+    - name: sort
+      in: query
+      description: Sort expression.
+  response_fields:
+    - Pageable
+    - Sort
+  note: Managed Table list/data endpoints return Spring-style Pageable/Sort metadata.
+idempotency:
+  supported: false
+  note: No Idempotency-Key header/parameter is documented in the specs. Configuration
+    mutation is UUID-addressed (PATCH /api/{uuid}) with an explicit ?save flag, which
+    provides update-in-place semantics but is not a formal idempotency-key contract.
+error_envelope:
+  format: custom
+  shapes:
+    - '{ errorMessage, timestamp }'
+    - '{ message, type, error, field }  # inline field-level rule/validation messages'
+  ref: errors/logikio-problem-types.yml
+request_headers:
+  - name: Origin
+    required: true
+    note: Runtime requests must send an Origin that is allow-listed for the Runtime Client.
+  - name: Content-Type
+    note: application/json (v1) or application/vnd.logik.cfg-v2+json (v2).
+rate_limiting:
+  documented: false

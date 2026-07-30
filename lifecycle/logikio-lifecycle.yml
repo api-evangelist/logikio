@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+source: https://api-docs.logik.io/
+versioning:
+  scheme: uri-path + media-type
+  current: v2
+  docs: https://api-docs.logik.io/
+  notes: |
+    Runtime Configuration APIs expose v1 (application/json) and v2
+    (application/vnd.logik.cfg-v2+json) in parallel; v2 is required for Product
+    Picker Fields. Admin APIs carry version in the path (v1/v2/v3).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+    v1 runtime remains published alongside v2.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []
+ownership:
+  note: Logik.io was acquired by ServiceNow; product now marketed as ServiceNow CPQ /
+    Logik.ai. The developer surface (api-docs.logik.io, github.com/logikioopensource)
+    remains live and independent as of this pass.

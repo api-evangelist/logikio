@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/logikioopensource
+# No first-party client SDK is published to npm / PyPI / Maven / NuGet / RubyGems /
+# Packagist / crates.io. Logik.io's public code artifacts are reference integrations /
+# accelerators (Salesforce Apex, Adobe PHP), not installable client libraries — so no
+# SDKs pointer is emitted. Cataloged here as official first-party packages/repos.
+packages:
+  - name: b2b-accelerator
+    kind: reference-integration
+    language: apex
+    registry: github
+    url: https://github.com/logikioopensource/b2b-accelerator
+    description: Reference integration with Salesforce B2B Commerce.
+    official: true
+  - name: salesforce-cpq-accelerator
+    kind: reference-integration
+    language: apex
+    registry: github
+    url: https://github.com/logikioopensource/salesforce-cpq-accelerator
+    description: Salesforce CPQ integration accelerator.
+    official: true
+  - name: salesforce-transaction-subscriptions
+    kind: reference-integration
+    language: apex
+    registry: github
+    url: https://github.com/logikioopensource/salesforce-transaction-subscriptions
+    official: true
+  - name: logik-adobe
+    kind: reference-integration
+    language: php
+    registry: github
+    url: https://github.com/logikioopensource/logik-adobe
+    description: Adobe Commerce integration.
+    official: true

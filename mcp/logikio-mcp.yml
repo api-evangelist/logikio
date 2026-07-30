@@ -1,0 +1,48 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/logikio-runtime-v2-openapi-original.yml, openapi/logikio-runtime-v1-openapi-original.yml,
+  openapi/logikio-admin-managed-tables-openapi-original.yml, openapi/logikio-admin-blueprint-openapi-original.yml
+# No official hosted/remote MCP server was found for Logik.io. This is a DERIVED candidate
+# tool list mapped one-per-operation from the published OpenAPI operations.
+server:
+  name: logikio
+  transport: http
+  url: null
+tools:
+  - name: init_config
+    description: Initialize a new configuration (v1).
+    source_operation: openapi/logikio-runtime-v1-openapi-original.yml#initConfig
+  - name: get_config
+    description: Get configuration state by UUID (v1).
+    source_operation: openapi/logikio-runtime-v1-openapi-original.yml#getConfig
+  - name: update_config
+    description: Update or save configuration (v1).
+    source_operation: openapi/logikio-runtime-v1-openapi-original.yml#updateConfig
+  - name: get_sales_bom
+    description: Get Sales BOM for a configuration.
+    source_operation: openapi/logikio-runtime-v1-openapi-original.yml#getSalesBOM
+  - name: get_manufacturing_bom
+    description: Get Manufacturing BOM for a configuration.
+    source_operation: openapi/logikio-runtime-v1-openapi-original.yml#getManufacturingBOM
+  - name: start_config_v2
+    description: Start a configuration (v2, supports Product Picker Fields).
+    source_operation: openapi/logikio-runtime-v2-openapi-original.yml#startConfigV2
+  - name: get_config_v2
+    description: Get configuration by UUID (v2).
+    source_operation: openapi/logikio-runtime-v2-openapi-original.yml#getConfigByUuidV2
+  - name: update_config_v2
+    description: Update or save configuration (v2).
+    source_operation: openapi/logikio-runtime-v2-openapi-original.yml#updateConfigByUuidV2
+  - name: get_bom_v2
+    description: Get the full BOM for a configuration (v2).
+    source_operation: openapi/logikio-runtime-v2-openapi-original.yml#getAllBomV2
+  - name: list_managed_tables
+    description: List all managed tables.
+    source_operation: openapi/logikio-admin-managed-tables-openapi-original.yml#/api/managedTables/v1/managedTables:get
+  - name: create_managed_table
+    description: Create a new managed table.
+    source_operation: openapi/logikio-admin-managed-tables-openapi-original.yml#/api/managedTables/v1/managedTables:post
+  - name: export_blueprints
+    description: Initiate bulk export of blueprints.
+    source_operation: openapi/logikio-admin-blueprint-openapi-original.yml#/api/admin/v1/bulk/blueprints/export:post

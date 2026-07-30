@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/logikio-admin-blueprint-openapi-original.yml, openapi/logikio-admin-managed-tables-openapi-original.yml,
+  openapi/logikio-runtime-v1-openapi-original.yml, openapi/logikio-runtime-v2-openapi-original.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Admin API Bearer Token
+  sources:
+  - openapi/logikio-admin-blueprint-openapi-original.yml
+  - openapi/logikio-admin-managed-tables-openapi-original.yml
+  - openapi/logikio-runtime-v1-openapi-original.yml
+  - openapi/logikio-runtime-v2-openapi-original.yml

@@ -1,0 +1,48 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/logikio-runtime-v1-openapi-original.yml, openapi/logikio-runtime-v2-openapi-original.yml,
+  openapi/logikio-admin-managed-tables-openapi-original.yml, openapi/logikio-admin-blueprint-openapi-original.yml
+format: custom
+# Logik.io does NOT use RFC 9457 application/problem+json. Runtime/Admin errors return a
+# custom JSON envelope. Two shapes are present in the specs:
+#   ErrorResponse: { errorMessage: string, timestamp: date-time }
+#   Message:       { message: string, type: string, error: boolean, field: string }
+# The Message[] array is returned inline on configuration responses to surface
+# field-level validation and rule messages (error=true marks a blocking message).
+envelope:
+  error_response:
+    fields:
+      - errorMessage
+      - timestamp
+  message:
+    fields:
+      - message
+      - type
+      - error
+      - field
+    note: Field-level validation/rule messages returned inline on configuration responses; error=true is blocking.
+problems:
+  - status: 400
+    title: Bad Request
+    description: Malformed request body or invalid configuration input.
+    schema: ErrorResponse
+  - status: 401
+    title: Unauthorized
+    description: Missing or invalid Bearer token (Runtime or Admin API key).
+    schema: ErrorResponse
+  - status: 403
+    title: Forbidden
+    description: Token valid but not permitted for the resource or Origin not allow-listed for the Runtime Client.
+    schema: ErrorResponse
+  - status: 404
+    title: Not Found
+    description: Configuration UUID, blueprint, managed table, column, row, or job not found.
+    schema: ErrorResponse
+  - status: 500
+    title: Internal Server Error
+    description: Unexpected server-side error.
+    schema: ErrorResponse
+  - status: '5XX'
+    title: Server Error
+    description: Upstream/server error range documented on admin operations.
+    schema: ErrorResponse

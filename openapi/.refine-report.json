@@ -1,0 +1,34 @@
+{
+  "provider": "logikio",
+  "sources": [
+    "logikio-blueprint-export-api-openapi.yml",
+    "logikio-blueprint-import-api-openapi.yml",
+    "logikio-bom-api-openapi.yml",
+    "logikio-configuration-api-openapi.yml",
+    "logikio-configuration-v2-api-openapi.yml",
+    "logikio-managed-tables-export-tables-api-openapi.yml",
+    "logikio-managed-tables-import-tables-api-openapi.yml",
+    "logikio-managed-tables-metadata-api-openapi.yml",
+    "logikio-managed-tables-table-rows-api-openapi.yml",
+    "logikio-managed-tables-tables-api-openapi.yml",
+    "logikio-runtime-bill-of-materials-api-openapi.yml"
+  ],
+  "outputs": [
+    "logikio-blueprint-export-api-openapi.yml",
+    "logikio-blueprint-import-api-openapi.yml",
+    "logikio-bom-api-openapi.yml",
+    "logikio-configuration-api-openapi.yml",
+    "logikio-configuration-v2-api-openapi.yml",
+    "logikio-managed-tables-export-tables-api-openapi.yml",
+    "logikio-managed-tables-import-tables-api-openapi.yml",
+    "logikio-managed-tables-metadata-api-openapi.yml",
+    "logikio-managed-tables-table-rows-api-openapi.yml",
+    "logikio-managed-tables-tables-api-openapi.yml",
+    "logikio-runtime-bill-of-materials-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

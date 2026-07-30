@@ -1,0 +1,78 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/logikio-runtime-v2-openapi-original.yml, openapi/logikio-admin-managed-tables-openapi-original.yml,
+  openapi/logikio-admin-blueprint-openapi-original.yml
+# Entity-relationship graph derived from OpenAPI component schemas + path parameters.
+entities:
+  - name: Configuration
+    id: uuid
+    description: A runtime configuration session; the core Runtime resource (start/get/update).
+    schemas: [InitConfig, InitConfigV2, UpdateConfig, UpdateConfigV2, ConfigResponseV2, ApiResponse]
+  - name: Set
+    key: setVariableName
+    description: A grouped collection of fields within a configuration.
+    schemas: [SetsContent, SetsResponse]
+  - name: BOM
+    description: Bill of Materials (Sales / Manufacturing / Custom) computed for a configuration.
+    schemas: [BOMResponse]
+  - name: Field
+    description: A configurable field on a blueprint.
+    schemas: [Field, FieldPayload]
+  - name: Product
+    description: A configurable product referenced by a configuration.
+    schemas: [Product]
+  - name: Blueprint
+    id: id
+    description: Admin definition binding fields, products, sets, rules; import/export unit.
+  - name: ManagedTable
+    key: tableName
+    description: Admin data table with metadata columns and rows.
+    schemas: [ManagedTableCreatePayload, ManagedTableResponse, TableResponse, Column, ColumnMetadata]
+  - name: Column
+    key: columnName
+    parent: ManagedTable
+    schemas: [Column, ColumnMetadata, ColumnPatch, ColumnResponse, ColumnWithId]
+  - name: Row
+    key: rowId
+    parent: ManagedTable
+  - name: Job
+    id: jobId
+    description: Async job (blueprint export, table export) polled for status/result.
+    schemas: [JobResponse, ImportTableResponse, ImportTableResult]
+relationships:
+  - from: Configuration
+    to: Set
+    type: has_many
+    via: setVariableName
+  - from: Configuration
+    to: BOM
+    type: has_one
+    via: uuid
+  - from: Configuration
+    to: Product
+    type: has_many
+  - from: Blueprint
+    to: Field
+    type: has_many
+  - from: Blueprint
+    to: Product
+    type: has_many
+  - from: Blueprint
+    to: Set
+    type: has_many
+  - from: ManagedTable
+    to: Column
+    type: has_many
+    via: columnName
+  - from: ManagedTable
+    to: Row
+    type: has_many
+    via: rowId
+  - from: Blueprint
+    to: Job
+    type: has_many
+    via: jobId
+  - from: ManagedTable
+    to: Job
+    type: has_many
+    via: tableExportJobId
