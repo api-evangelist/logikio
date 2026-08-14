@@ -31,7 +31,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Sales Tech
@@ -201,8 +201,14 @@ common:
   url: agentic-access/logikio-agentic-access.yml
 - type: DomainSecurity
   url: security/logikio-domain-security.yml
+- type: Plans
+  url: plans/logikio-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/logikio-rate-limits.yml
+- type: Support
+  url: https://support.logik.io/
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 25
+  artifacts_added: 2
   pass: local-v1
