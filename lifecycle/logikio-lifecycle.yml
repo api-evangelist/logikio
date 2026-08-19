@@ -1,6 +1,6 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: https://api-docs.logik.io/
+source: https://api-docs.logik.io/, https://github.com/logikioopensource/API-Documentation, live probes 2026-08-13
 versioning:
   scheme: uri-path + media-type
   current: v2
@@ -12,14 +12,57 @@ versioning:
 deprecation:
   policy_url: null
   sunset_header: false
-  note: No formal deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
-    v1 runtime remains published alongside v2.
+  note: No formal deprecation policy and no RFC 8594 Sunset/Deprecation header support
+    is documented anywhere in the reference. v1 runtime remains published alongside v2
+    with no stated end-of-life. An integrator has no published signal for when a
+    version stops being served.
 sla:
   url: null
   uptime_target: null
 status_page: null
+status_page_note: >-
+  No status page exists. status.logik.io does not resolve (NXDOMAIN, probed
+  2026-08-13). The docs error table publishes a 503 "temporarily offline for
+  maintenance" response with no channel on which those windows are announced.
+changelog:
+  url: null
+  note: >-
+    Logik.io publishes no API changelog or release notes. The only CHANGELOG.md in the
+    org (logikioopensource/api-docs) is the upstream Slate documentation-generator
+    changelog (last entry "Version 2.13.1, January 31, 2023"), not a record of API
+    change — so no ChangeLog artifact or pointer is emitted.
+support:
+  url: https://support.logik.io/
+  status: 200
+  gated: true
+  note: >-
+    Redirects to a Jira Service Management customer portal
+    (customer.help.logik.io/servicedesk/customer/user/login) — existing customers only.
+    Public contact is mailto:support@logik.io, published in the docs and in every
+    OpenAPI info.contact.
 deprecated_operations: []
+contract_currency:
+  specs_source_repo: https://github.com/logikioopensource/API-Documentation
+  specs_repo_last_push: '2023-09-29'
+  verified: '2026-08-13'
+  note: >-
+    All four published OpenAPI specs (runtime v1, runtime v2, admin blueprint, admin
+    managed tables) were re-fetched and SHA-1 matched byte-for-byte against the copies
+    captured in openapi/_original/ — unchanged. The specs repo has not been pushed
+    since 2023-09-29, while api-docs.logik.io documents a substantially LARGER admin
+    surface (Blueprints CRUD, Blueprint Details/Related/Deployments/Layouts,
+    Configurable Products, Fields, Picklists, Sets, Set Aggregates, Product Pickers
+    and their Options/Aggregates/Bulk Actions, Rules, Matrix Loader) for which NO
+    machine-readable spec is published. The published contract covers only a fraction
+    of the documented API.
 ownership:
-  note: Logik.io was acquired by ServiceNow; product now marketed as ServiceNow CPQ /
-    Logik.ai. The developer surface (api-docs.logik.io, github.com/logikioopensource)
-    remains live and independent as of this pass.
+  note: >-
+    Logik.io was acquired by ServiceNow; the product is marketed as ServiceNow CPQ /
+    Logik.ai. As of 2026-08-13 the entire logik.io and logik.ai marketing surface
+    301-redirects cross-host to https://www.servicenow.com/products/cpq.html (the
+    ServiceNow edge then 403s non-browser clients) — a change since the previous pass,
+    when logik.io still served its own pages. The DEVELOPER surface is unaffected:
+    api-docs.logik.io returns 200 and github.com/logikioopensource remains public.
+  marketing_site_retired: true
+  developer_surface_live: true
+  checked: '2026-08-13'

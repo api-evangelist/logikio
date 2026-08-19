@@ -1,0 +1,1257 @@
+{
+  "item": [
+    {
+      "id": "b40f0d13-ae7a-42f1-b183-dff0441fea02",
+      "name": "Managed Tables > Import Tables",
+      "description": {
+        "content": "Import and Replace Tables",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af8310d8-2ac8-4430-8a1a-00fbb14875a1",
+          "name": "Upload Table CSV",
+          "request": {
+            "name": "Upload Table CSV",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "managedTables",
+                "v2",
+                "managedTables",
+                ":tableName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableName",
+                  "description": "(Required) Name of the Managed Table"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                },
+                {
+                  "key": "jobType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of TABLE_IMPORT)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5c46ad2e-9b1d-446b-98c0-e3201747b118",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"started\": \"2023-05-31T02:51:16.550561712Z\",\n  \"finished\": null,\n  \"jobType\": \"TABLE_EXPORT\",\n  \"status\": \"STARTED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d94bf004-e4e5-486b-ba88-cf4b703c01d6",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-7A407E7202264005AD03A14D9\",\n  \"errorMessage\": \"Rows must not be empty.\",\n  \"timestamp\": \"2023-05-31T02:08:58.235882682Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a9d80c4-59bb-4b81-9862-f5e31a9cc7e1",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f464cb99-39e8-4220-ad1c-e63550f029b4",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09538e14-2950-4e9d-880a-0dedbfb39444",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-C2BD5E131995442CABF255BCD\",\n  \"errorMessage\": \"LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.\",\n  \"timestamp\": \"2023-05-31T02:07:58.447433023Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5feee62f-dc64-4f86-8572-217005cb3e25",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-82DB4CF583054DF0930EDE9BE\",\n  \"errorMessage\": \"An unexpected error occurred.\",\n  \"timestamp\": \"2023-05-31T02:42:40.087287033Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "574bd856-620c-446b-b677-83f4f053c60e",
+          "name": "Replace data in table with uploaded data",
+          "request": {
+            "name": "Replace data in table with uploaded data",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "managedTables",
+                "v2",
+                "managedTables",
+                ":tableName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableName",
+                  "description": "(Required) Name of the Managed Table"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                },
+                {
+                  "key": "jobType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of TABLE_IMPORT)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "00a72e4a-8238-4924-ba4f-b14485cfe1e3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"started\": \"2023-05-31T02:51:16.550561712Z\",\n  \"finished\": null,\n  \"jobType\": \"TABLE_EXPORT\",\n  \"status\": \"STARTED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6600386f-ffb4-416b-9582-835e1b3aaefd",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-7A407E7202264005AD03A14D9\",\n  \"errorMessage\": \"Rows must not be empty.\",\n  \"timestamp\": \"2023-05-31T02:08:58.235882682Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e45b041a-c3d0-4060-b836-68f692acfb11",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2956dfe8-dab4-4552-8792-ef38a5da0bbf",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dda025a4-5ee7-49cc-8739-bcdc6e3e9c81",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-C2BD5E131995442CABF255BCD\",\n  \"errorMessage\": \"LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.\",\n  \"timestamp\": \"2023-05-31T02:07:58.447433023Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52c0edf9-2f89-4bd9-8510-1ef01161e959",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v2",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "type": "file"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of TABLE_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "TABLE_IMPORT",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-82DB4CF583054DF0930EDE9BE\",\n  \"errorMessage\": \"An unexpected error occurred.\",\n  \"timestamp\": \"2023-05-31T02:42:40.087287033Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Logik.io tenant",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenant"
+    },
+    {
+      "description": {
+        "content": "Logik.io sector",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test",
+      "key": "sector"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.{{sector}}.logik.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42541dd6-5ea0-45a8-a6c3-b7c61678bc30",
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Import Tables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.\n\nContact Support:\n Email: support@logik.io",
+      "type": "text/plain"
+    }
+  }
+}

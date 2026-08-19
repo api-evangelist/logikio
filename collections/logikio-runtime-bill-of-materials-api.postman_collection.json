@@ -1,0 +1,2471 @@
+{
+  "item": [
+    {
+      "id": "8096324a-5c22-459f-b672-a9f90b948737",
+      "name": "Runtime - Bill of Materials",
+      "description": {
+        "content": "Get Bill of Materials (BOM) information for a given configuration UUID.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57fe820d-62ac-48fa-a52e-c29333ddf770",
+          "name": "Get BOM",
+          "request": {
+            "name": "Get BOM",
+            "description": {
+              "content": "Get BOM with the given uuid for current state of Configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                ":uuid",
+                "bom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "(Required) Page number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "(Required) Size of the paged data results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "modified%2CDESC",
+                  "description": "(Required) Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+                },
+                {
+                  "disabled": false,
+                  "key": "bomType",
+                  "value": "<string>",
+                  "description": "Pass comma separated list of bom types to be returned"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                "key": "Origin",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "830c1a65-d222-4579-bfa8-6d41e13052a1",
+              "name": "Return Entire BOM snapshot of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 2252,\n      \"bomType\": \"string\",\n      \"level\": 1155,\n      \"parentProduct\": 6480,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 9245,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 3021.0369985693474,\n      \"extPrice\": 3826.574005085116\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 4631,\n      \"bomType\": \"string\",\n      \"level\": 9559,\n      \"parentProduct\": 4594,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 6906,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 8223.069610240384,\n      \"extPrice\": 6922.2629579696495\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": false,\n      \"sorted\": false,\n      \"unsorted\": false\n    },\n    \"offset\": 4980,\n    \"pageNumber\": 2038,\n    \"pageSize\": 7200,\n    \"paged\": false,\n    \"unpaged\": true\n  },\n  \"totalPages\": 5269,\n  \"totalElements\": 1290,\n  \"last\": false,\n  \"size\": 3387,\n  \"number\": 8976,\n  \"numberOfElements\": 3596,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 2115\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b26a57d-0fee-42af-8fe1-6f903fab645c",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28431eb7-4d89-41e7-9e94-8e2de28569b0",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d2932ca-dc58-44f2-b6d1-139cbb6168b5",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf91801f-cdf6-4f17-98f8-a1aea93c5560",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5e5bbc2-1092-4bd0-b1d7-9a7bf72c1d8f",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bafec488-45cf-4b53-9acc-72568a0afa5a",
+          "name": "Get Sales BOM",
+          "request": {
+            "name": "Get Sales BOM",
+            "description": {
+              "content": "Get Sales BOM with the given uuid for current state of Configuration",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                ":uuid",
+                "bom",
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "(Required) Page number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "(Required) Size of the paged data results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "modified%2CDESC",
+                  "description": "(Required) Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                "key": "Origin",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf759c55-949b-438d-ae6c-1c821607355a",
+              "name": "Return current sales BOM of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 7527,\n      \"bomType\": \"string\",\n      \"level\": 5207,\n      \"parentProduct\": 674,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 9962,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 6752.362013583516,\n      \"extPrice\": 6752.723631217023\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 7650,\n      \"bomType\": \"string\",\n      \"level\": 4738,\n      \"parentProduct\": 4866,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 5980,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9701.244646529305,\n      \"extPrice\": 5968.322222783961\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": true,\n      \"unsorted\": true\n    },\n    \"offset\": 8787,\n    \"pageNumber\": 6059,\n    \"pageSize\": 5038,\n    \"paged\": true,\n    \"unpaged\": true\n  },\n  \"totalPages\": 7514,\n  \"totalElements\": 9192,\n  \"last\": false,\n  \"size\": 3170,\n  \"number\": 6297,\n  \"numberOfElements\": 2340,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 2581\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79c460ab-0231-4ccb-8e4c-8722d23fbd2b",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db43019a-c698-41f1-a443-f057288627ae",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d276c7e7-c5f1-46b1-b6c4-e79d8be3cada",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8996efce-b700-48d7-bcc1-7a9c1e3e3c83",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3579bb8c-f276-4970-a253-f8ac3e8ffd0b",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c7efc9a-de78-497b-b0bf-a34f68f1fddc",
+          "name": "Get Manufacturing BOM",
+          "request": {
+            "name": "Get Manufacturing BOM",
+            "description": {
+              "content": "Get Manufacturing BOM with the given uuid for current state of Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                ":uuid",
+                "bom",
+                "manufacturing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "(Required) Page number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "(Required) Size of the paged data results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "modified%2CDESC",
+                  "description": "(Required) Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                "key": "Origin",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66babffb-efb8-472a-ac57-cc17d68704ae",
+              "name": "Return Manufacturing BOM snapshot of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 7527,\n      \"bomType\": \"string\",\n      \"level\": 5207,\n      \"parentProduct\": 674,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 9962,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 6752.362013583516,\n      \"extPrice\": 6752.723631217023\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 7650,\n      \"bomType\": \"string\",\n      \"level\": 4738,\n      \"parentProduct\": 4866,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 5980,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9701.244646529305,\n      \"extPrice\": 5968.322222783961\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": true,\n      \"unsorted\": true\n    },\n    \"offset\": 8787,\n    \"pageNumber\": 6059,\n    \"pageSize\": 5038,\n    \"paged\": true,\n    \"unpaged\": true\n  },\n  \"totalPages\": 7514,\n  \"totalElements\": 9192,\n  \"last\": false,\n  \"size\": 3170,\n  \"number\": 6297,\n  \"numberOfElements\": 2340,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 2581\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a437c15-16cf-40f7-931d-e6a8808b895e",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "357ab8c3-dc4d-4a3a-993f-f78fcaa37b50",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac641db8-9dc6-412f-87a9-4e2d2156e681",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8adb81a3-c1f4-4b33-838e-87c514603dbf",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ae548a6-13a7-481a-abfd-eb5ff4f51842",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df9bd182-1d21-4344-a153-03e6712dd95f",
+          "name": "Get Custom BOM",
+          "request": {
+            "name": "Get Custom BOM",
+            "description": {
+              "content": "Get Custom BOM type line items defined in the admin",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                ":uuid",
+                "bom",
+                ":custom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "(Required) Page number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "(Required) Size of the paged data results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "modified%2CDESC",
+                  "description": "(Required) Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "custom",
+                  "description": "(Required) Custom BOM Type name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                "key": "Origin",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32276cd1-caa4-4630-b37d-efc1b29cc063",
+              "name": "Returns BOM snapshot of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 7527,\n      \"bomType\": \"string\",\n      \"level\": 5207,\n      \"parentProduct\": 674,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 9962,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 6752.362013583516,\n      \"extPrice\": 6752.723631217023\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 7650,\n      \"bomType\": \"string\",\n      \"level\": 4738,\n      \"parentProduct\": 4866,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 5980,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9701.244646529305,\n      \"extPrice\": 5968.322222783961\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": true,\n      \"unsorted\": true\n    },\n    \"offset\": 8787,\n    \"pageNumber\": 6059,\n    \"pageSize\": 5038,\n    \"paged\": true,\n    \"unpaged\": true\n  },\n  \"totalPages\": 7514,\n  \"totalElements\": 9192,\n  \"last\": false,\n  \"size\": 3170,\n  \"number\": 6297,\n  \"numberOfElements\": 2340,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 2581\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0346a0ec-f266-4cac-8728-9289c84c98ae",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf8293c9-4ecf-47c3-97c8-0e52bb1325ef",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "77472be4-13f7-4a85-bd3c-178b1b2f00b9",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91535a02-7db9-47a6-9ade-8e9928a7d77a",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbdf0f61-09d1-459b-95b1-48ff8b2f7364",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "modified%2CDESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Request Origin, needs to be one of the allowed origins for the Runtime Token being used.",
+                    "key": "Origin",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\",\n  \"timestamp\": \"1978-09-22T10:15:45.764Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Logik.io tenant",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenant"
+    },
+    {
+      "description": {
+        "content": "Logik.io sector",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test",
+      "key": "sector"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.{{sector}}.logik.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bfa8f3a9-c710-48a3-b6f6-8c8ac0c44f2f",
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Runtime - Bill of Materials API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.\n\nContact Support:\n Email: support@logik.io",
+      "type": "text/plain"
+    }
+  }
+}

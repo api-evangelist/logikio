@@ -60,3 +60,12 @@ request_headers:
     note: application/json (v1) or application/vnd.logik.cfg-v2+json (v2).
 rate_limiting:
   documented: false
+  headers: []
+  exhaustion_status: null
+  ref: rate-limits/logikio-rate-limits.yml
+  note: >-
+    Full-text search of the api-docs.logik.io reference and all four OpenAPI specs
+    (2026-08-13) found no rate-limit, throttle, quota, 429 or Retry-After mention.
+commercial:
+  ref: plans/logikio-plans-pricing.yml
+  note: Enterprise contact-sales only; no published plans, no metered API pricing, no self-serve signup.

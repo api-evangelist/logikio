@@ -1,10 +1,30 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
-source: https://github.com/logikioopensource
+source: https://github.com/logikioopensource + npm/PyPI/Maven Central/NuGet/RubyGems/Packagist/crates.io/pkg.go.dev registry searches
 # No first-party client SDK is published to npm / PyPI / Maven / NuGet / RubyGems /
 # Packagist / crates.io. Logik.io's public code artifacts are reference integrations /
 # accelerators (Salesforce Apex, Adobe PHP), not installable client libraries — so no
 # SDKs pointer is emitted. Cataloged here as official first-party packages/repos.
+#
+# CURRENCY: none of these is distributed through a package registry, so there is no
+# registry metadata endpoint to read a version from. `registry: github` entries carry
+# `version:` from a published GitHub release/tag where one exists (only logik-adobe
+# has one) and `version: null` where the repo ships from a branch with no tag at all —
+# a consumer cannot pin these, they can only clone a moving default branch.
+# `published:` records the last push to the default branch (the only real date GitHub
+# exposes for an untagged repo), and is labelled as such per entry.
+registry_sdks:
+  searched:
+    - npm
+    - pypi
+    - maven-central
+    - nuget
+    - rubygems
+    - packagist
+    - crates.io
+    - pkg.go.dev
+  found: 0
+  note: Zero first-party Logik.io client libraries exist in any public package registry.
 packages:
   - name: b2b-accelerator
     kind: reference-integration
@@ -13,6 +33,10 @@ packages:
     url: https://github.com/logikioopensource/b2b-accelerator
     description: Reference integration with Salesforce B2B Commerce.
     official: true
+    version: null
+    published: '2025-05-23'
+    published_basis: last-push-to-default-branch
+    note: No GitHub release and no tag — unpinnable; consumers clone the moving `main` branch. Last push 2025-05-23, i.e. ~15 months stale as of this pass.
   - name: salesforce-cpq-accelerator
     kind: reference-integration
     language: apex
@@ -20,12 +44,20 @@ packages:
     url: https://github.com/logikioopensource/salesforce-cpq-accelerator
     description: Salesforce CPQ integration accelerator.
     official: true
+    version: null
+    published: '2025-03-19'
+    published_basis: last-push-to-default-branch
+    note: No release and no tag. Last push 2025-03-19, the oldest artifact in the org.
   - name: salesforce-transaction-subscriptions
     kind: reference-integration
     language: apex
     registry: github
     url: https://github.com/logikioopensource/salesforce-transaction-subscriptions
     official: true
+    version: null
+    published: '2026-01-30'
+    published_basis: last-push-to-default-branch
+    note: No release and no tag. Most recently touched first-party artifact (2026-01-30), post-ServiceNow-acquisition.
   - name: logik-adobe
     kind: reference-integration
     language: php
@@ -33,3 +65,17 @@ packages:
     url: https://github.com/logikioopensource/logik-adobe
     description: Adobe Commerce integration.
     official: true
+    version: v0.1.1
+    published: '2025-06-20'
+    published_basis: github-release
+    note: The only first-party artifact carrying a real published version. Pre-1.0 and unchanged since 2025-06-20.
+decay_signal:
+  note: |
+    Every first-party code artifact predates this pass by 6-17 months, and the two
+    Salesforce accelerators that most integrators start from have had no push since
+    Q1-Q2 2025. The published OpenAPI specs are older still — the API-Documentation
+    repo's last commit is 2023-09-29, and all four specs match our captured copies
+    byte-for-byte (SHA-1 verified 2026-08-13), so the contract has not moved in
+    almost three years while the docs site kept growing.
+  specs_repo_last_push: '2023-09-29'
+  specs_unchanged_since_capture: true

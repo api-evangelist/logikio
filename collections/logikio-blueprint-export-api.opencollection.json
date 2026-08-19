@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blueprint > Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate bulk export of blueprints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.{sector}.logik.io/api/admin/v1/bulk/blueprints/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a bulk export of blueprints with the given payload."
+        },
+        {
+          "info": {
+            "name": "Retrieve job details by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/admin/v1/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the job"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a job by providing its ID."
+        },
+        {
+          "info": {
+            "name": "Retrieve bulk export by job ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/admin/v2/bulk/export/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the bulk export job"
+              }
+            ]
+          },
+          "docs": "Retrieve a bulk export file by providing the job ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Metadata API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Tables > Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Table Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables/:tableName/metadata",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              }
+            ]
+          },
+          "docs": "Get Table Metadata"
+        },
+        {
+          "info": {
+            "name": "Add / Remove Table Metadata Column(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables/:tableName/metadata/columns",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add / Remove Table Metadata Column(s)"
+        },
+        {
+          "info": {
+            "name": "Delete Table Metadata Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables/:tableName/metadata/columns/:columnName",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              },
+              {
+                "name": "columnName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Column in the Managed Table"
+              }
+            ]
+          },
+          "docs": "Delete Table Metadata Column"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

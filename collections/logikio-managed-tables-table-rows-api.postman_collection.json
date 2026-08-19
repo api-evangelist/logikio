@@ -1,0 +1,2145 @@
+{
+  "item": [
+    {
+      "id": "1ec9ded1-bc8c-4d28-bb66-ae50adb0d71f",
+      "name": "Managed Tables > Table Rows",
+      "description": {
+        "content": "Working with individual Table Rows",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "104a70a2-5a84-4bde-afac-16766cfeef2d",
+          "name": "Add new row to Table",
+          "request": {
+            "name": "Add new row to Table",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "managedTables",
+                "v1",
+                "managedTables",
+                ":tableName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableName",
+                  "description": "(Required) Name of the Managed Table"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rows\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f507a327-dadc-4b9c-a678-7ad2e9c8c098",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"ID\": 7612.051422940102,\n      \"additionalProperties\": \"string\"\n    },\n    {\n      \"ID\": 8898.953704140196,\n      \"additionalProperties\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df17f3ac-5070-4bfc-ba71-7149ef91719f",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-7A407E7202264005AD03A14D9\",\n  \"errorMessage\": \"Rows must not be empty.\",\n  \"timestamp\": \"2023-05-31T02:08:58.235882682Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d864215a-50c8-4a51-8807-68534bdcaec3",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f2bea88e-0b1c-40ee-87a2-671824c9d7a6",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc03a076-ff7f-4502-93dc-a4b420b5f4b6",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-C2BD5E131995442CABF255BCD\",\n  \"errorMessage\": \"LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.\",\n  \"timestamp\": \"2023-05-31T02:07:58.447433023Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9b69b74-6c6a-457d-a49b-9b18fff5a878",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-82DB4CF583054DF0930EDE9BE\",\n  \"errorMessage\": \"An unexpected error occurred.\",\n  \"timestamp\": \"2023-05-31T02:42:40.087287033Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "738d77bb-90f5-416b-aa80-5318d1f46bca",
+          "name": "Get Table Data Row",
+          "request": {
+            "name": "Get Table Data Row",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "managedTables",
+                "v1",
+                "managedTables",
+                ":tableName",
+                ":rowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableName",
+                  "description": "(Required) Name of the Managed Table"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rowId",
+                  "description": "(Required) Row Id"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f51dc657-334f-4f8a-9168-6bf4c4148c10",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"DATE_MODIFIED\": \"string\",\n  \"DATE_CREATED\": \"string\",\n  \"ID\": 5684.469348776396,\n  \"additionalProperties\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b5c59c3-e703-4570-b22c-cb257657c2a4",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-7A407E7202264005AD03A14D9\",\n  \"errorMessage\": \"Rows must not be empty.\",\n  \"timestamp\": \"2023-05-31T02:08:58.235882682Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ec97943-58db-4387-bb18-d0f224708514",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4a2f88b-49b6-4b73-9ba3-557c1affa389",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ae00ea4-fadb-46ca-ba24-1679d8640c77",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-C2BD5E131995442CABF255BCD\",\n  \"errorMessage\": \"LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.\",\n  \"timestamp\": \"2023-05-31T02:07:58.447433023Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbe19ac6-d0b3-4d1c-ac9d-9eff6e972967",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-82DB4CF583054DF0930EDE9BE\",\n  \"errorMessage\": \"An unexpected error occurred.\",\n  \"timestamp\": \"2023-05-31T02:42:40.087287033Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17a34a50-074e-4ffd-a642-d6e52bc2ecea",
+          "name": "Update Table Data Row",
+          "request": {
+            "name": "Update Table Data Row",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "managedTables",
+                "v1",
+                "managedTables",
+                ":tableName",
+                ":rowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableName",
+                  "description": "(Required) Name of the Managed Table"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "rowId",
+                  "description": "(Required) Row Id"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rows\": [\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    },\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "039becce-78f2-4216-bee3-df69ff2c1243",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    },\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ID\": \"<number>\",\n  \"additionalProperties\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c25c4c0c-41be-43f6-80f5-396ab850620d",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    },\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-7A407E7202264005AD03A14D9\",\n  \"errorMessage\": \"Rows must not be empty.\",\n  \"timestamp\": \"2023-05-31T02:08:58.235882682Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffd0e653-3b11-419b-ba40-467301b36722",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    },\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44d124b2-062f-4351-8953-d197854402f9",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    },\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5443c9a5-7c1d-42da-ac9e-9f46c3e0bdb2",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    },\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-C2BD5E131995442CABF255BCD\",\n  \"errorMessage\": \"LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.\",\n  \"timestamp\": \"2023-05-31T02:07:58.447433023Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae48ec77-f5b2-419a-add1-fd752c8661cb",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rows\": [\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    },\n    {\n      \"ID\": \"<number>\",\n      \"additionalProperties\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-82DB4CF583054DF0930EDE9BE\",\n  \"errorMessage\": \"An unexpected error occurred.\",\n  \"timestamp\": \"2023-05-31T02:42:40.087287033Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8d88f36-0561-4f59-984c-1d8c74a735de",
+          "name": "Delete Table Data Row",
+          "request": {
+            "name": "Delete Table Data Row",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "managedTables",
+                "v1",
+                "managedTables",
+                ":tableName",
+                ":rowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableName",
+                  "description": "(Required) Name of the Managed Table"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "rowId",
+                  "description": "(Required) Row Id"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a35e2427-b097-48c8-992c-f65c9e3a9553",
+              "name": "The row was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97f24ada-b611-4666-a358-79ecadaaadd3",
+              "name": "Bad request. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-7A407E7202264005AD03A14D9\",\n  \"errorMessage\": \"Rows must not be empty.\",\n  \"timestamp\": \"2023-05-31T02:08:58.235882682Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "affae0aa-a6ad-4655-b0ce-db24d5dddee7",
+              "name": "Authorization information is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ae6399d-b0ee-43e9-9ea4-c0017744d790",
+              "name": "Credentials are valid but insufficient privileges to perform the action on the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9838b973-d40c-4583-8815-710ddb6df8b8",
+              "name": "Resource was not found. See `errorMessage` for additional details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-C2BD5E131995442CABF255BCD\",\n  \"errorMessage\": \"LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.\",\n  \"timestamp\": \"2023-05-31T02:07:58.447433023Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6dc0b72-88f6-4087-85f5-de1a17a77f7c",
+              "name": "Unexpected Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "managedTables",
+                    "v1",
+                    "managedTables",
+                    ":tableName",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableName",
+                      "description": "(Required) Name of the Managed Table"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "rowId",
+                      "description": "(Required) Row Id"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"LGK-82DB4CF583054DF0930EDE9BE\",\n  \"errorMessage\": \"An unexpected error occurred.\",\n  \"timestamp\": \"2023-05-31T02:42:40.087287033Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Logik.io tenant",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenant"
+    },
+    {
+      "description": {
+        "content": "Logik.io sector",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test",
+      "key": "sector"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.{{sector}}.logik.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "37119999-26c1-4e8c-8b14-93ecad5cd026",
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Table Rows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.\n\nContact Support:\n Email: support@logik.io",
+      "type": "text/plain"
+    }
+  }
+}

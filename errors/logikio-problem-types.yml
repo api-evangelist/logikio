@@ -1,8 +1,10 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/logikio-runtime-v1-openapi-original.yml, openapi/logikio-runtime-v2-openapi-original.yml,
+generated: '2026-08-13'
+method: searched
+source: https://api-docs.logik.io/ (Errors reference) + https://github.com/logikioopensource/api-docs/blob/main/source/includes/_errors.md
+derived_from: openapi/logikio-runtime-v1-openapi-original.yml, openapi/logikio-runtime-v2-openapi-original.yml,
   openapi/logikio-admin-managed-tables-openapi-original.yml, openapi/logikio-admin-blueprint-openapi-original.yml
 format: custom
+docs: https://api-docs.logik.io/
 # Logik.io does NOT use RFC 9457 application/problem+json. Runtime/Admin errors return a
 # custom JSON envelope. Two shapes are present in the specs:
 #   ErrorResponse: { errorMessage: string, timestamp: date-time }
@@ -25,24 +27,55 @@ problems:
   - status: 400
     title: Bad Request
     description: Malformed request body or invalid configuration input.
+    documented_meaning: Bad Request -- Your request is invalid.
     schema: ErrorResponse
+    documented: true
   - status: 401
     title: Unauthorized
     description: Missing or invalid Bearer token (Runtime or Admin API key).
+    documented_meaning: Unauthorized -- Your API key is wrong or missing.
+    remediation: Mint a Runtime Token (Admin > Runtime Clients) or an Admin API Key (Admin > Utilities > Admin API Keys). Runtime tokens cannot call Admin endpoints and vice versa.
     schema: ErrorResponse
+    documented: true
   - status: 403
     title: Forbidden
     description: Token valid but not permitted for the resource or Origin not allow-listed for the Runtime Client.
+    documented_meaning: Forbidden -- Your API Key does not have permissions to perform the operation.
+    remediation: Confirm the token type matches the API family, and that the Origin header sent on Runtime calls is allow-listed on the Runtime Client.
     schema: ErrorResponse
+    documented: true
   - status: 404
     title: Not Found
     description: Configuration UUID, blueprint, managed table, column, row, or job not found.
+    documented_meaning: Not Found -- The endpoint or resource could not be found.
     schema: ErrorResponse
+    documented: true
+  - status: 405
+    title: Method Not Allowed
+    description: HTTP method not supported on this path.
+    documented_meaning: Method Not Allowed
+    schema: ErrorResponse
+    documented: true
+    note: Published in the docs error table; not enumerated as a response in any OpenAPI spec.
   - status: 500
     title: Internal Server Error
     description: Unexpected server-side error.
+    documented_meaning: Internal Server Error -- We had a problem with our server. Try again later.
     schema: ErrorResponse
+    documented: true
+  - status: 503
+    title: Service Unavailable
+    description: Planned maintenance window or temporary unavailability.
+    documented_meaning: We're temporarily offline for maintenance. Please try again later.
+    schema: ErrorResponse
+    documented: true
+    note: Published in the docs error table; not enumerated as a response in any OpenAPI spec. No status page is published to signal these windows.
   - status: '5XX'
     title: Server Error
     description: Upstream/server error range documented on admin operations.
     schema: ErrorResponse
+    documented: false
+gaps:
+  - no_429: The published error table has NO 429 / Too Many Requests entry and no spec declares one; see rate-limits/logikio-rate-limits.yml (limit_count 0).
+  - no_error_codes: Errors are identified by HTTP status only. There is no machine-readable application-level error code or type URI, so an agent cannot branch on anything narrower than the status.
+  - not_rfc9457: Responses are application/json with a bespoke envelope, not application/problem+json.

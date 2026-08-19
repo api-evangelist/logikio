@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Tables API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Tables > Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables"
+          },
+          "docs": "List All Tables"
+        },
+        {
+          "info": {
+            "name": "Create a new Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Table"
+        },
+        {
+          "info": {
+            "name": "Get Table Data and Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v2/managedTables/:tableName",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              }
+            ]
+          },
+          "docs": "Get Table Data and Metadata"
+        },
+        {
+          "info": {
+            "name": "Delete Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v2/managedTables/:tableName",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              }
+            ]
+          },
+          "docs": "Delete Table"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

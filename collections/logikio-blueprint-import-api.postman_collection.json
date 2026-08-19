@@ -1,0 +1,337 @@
+{
+  "item": [
+    {
+      "id": "7ffec833-f9f6-4703-bc9c-28133a540213",
+      "name": "Blueprint > Import",
+      "description": {
+        "content": "Import Blueprints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "080910cf-fdd7-4cdf-b127-fe41b18b02b1",
+          "name": "Upload a blueprint zip file",
+          "request": {
+            "name": "Upload a blueprint zip file",
+            "description": {
+              "content": "Upload a file using multipart/form-data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "v2",
+                "uploadFile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) Binary file data"
+                },
+                {
+                  "key": "jobType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Type of job (This can only be one of GENERIC_IMPORT)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e72c99ea-612d-43f8-986b-53785ba3ef55",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "v2",
+                    "uploadFile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file data",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Type of job (This can only be one of GENERIC_IMPORT)",
+                        "type": "text/plain"
+                      },
+                      "key": "jobType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created\": \"1999-10-23T01:06:51.691Z\",\n  \"modified\": \"1959-02-22T05:15:30.661Z\",\n  \"id\": 8560,\n  \"jobType\": \"string\",\n  \"status\": \"COMPLETED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "091a7d94-b18a-44d2-8213-98afb99948d7",
+          "name": "Retrieve job details by ID",
+          "request": {
+            "name": "Retrieve job details by ID",
+            "description": {
+              "content": "Retrieve details of a job by providing its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "v1",
+                "job",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "jobId",
+                  "description": "(Required) Id of the job"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bed800d-a756-4da3-b610-ef835526a544",
+              "name": "Job details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "v1",
+                    "job",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "jobId",
+                      "description": "(Required) Id of the job"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3251,\n  \"started\": \"2025-03-05T06:10:23.838Z\",\n  \"finished\": \"2020-07-23T01:25:36.248Z\",\n  \"jobType\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Logik.io tenant",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenant"
+    },
+    {
+      "description": {
+        "content": "Logik.io sector",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test",
+      "key": "sector"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.{{sector}}.logik.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7dc70d4e-f1fc-4518-9e83-b1416d04c371",
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Blueprint > Import API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.\n\nContact Support:\n Email: support@logik.io",
+      "type": "text/plain"
+    }
+  }
+}

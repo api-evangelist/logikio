@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Blueprint > Import API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blueprint > Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a blueprint zip file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.{sector}.logik.io/api/admin/v2/uploadFile",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "jobType",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a file using multipart/form-data"
+        },
+        {
+          "info": {
+            "name": "Retrieve job details by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/admin/v1/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the job"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a job by providing its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

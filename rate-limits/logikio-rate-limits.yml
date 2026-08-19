@@ -1,0 +1,30 @@
+generated: '2026-08-13'
+method: searched
+source: https://api-docs.logik.io/
+# The complete Logik.io API Reference (Slate single-page doc, ~3.9 MB of HTML covering
+# Runtime v1/v2, BOM, Blueprint, Configurable Products, Fields, Sets, Product Pickers,
+# Rules, Managed Tables, Matrix Loader and Jobs) was fetched and searched in full.
+# It contains NO occurrence of "rate limit", "throttle", "quota", "429",
+# "Too Many Requests" or "Retry-After". None of the four published OpenAPI specs
+# declares a 429 response or any X-RateLimit-*/RateLimit-* response header.
+# An honest zero: limits may well be enforced at the tenant edge, but nothing is
+# published, so an integrator cannot plan for them.
+limit_count: 0
+documented: false
+limits: []
+response_headers: []
+exhaustion_status: null
+retry_after: false
+evidence:
+  - url: https://api-docs.logik.io/
+    status: 200
+    note: Full reference searched; zero rate-limit/throttle/429/Retry-After mentions.
+  - url: https://raw.githubusercontent.com/logikioopensource/API-Documentation/main/runtime/Runtime_v2.yml
+    status: 200
+    note: Runtime v2 OpenAPI 3.0.1 declares 400/401/403/404/500 only - no 429.
+  - url: https://raw.githubusercontent.com/logikioopensource/API-Documentation/main/admin/managedTables.yml
+    status: 200
+    note: Admin Managed Tables OpenAPI declares no 429 and no rate-limit headers.
+documented_error_codes_instead:
+  ref: errors/logikio-problem-types.yml
+  note: The docs publish an error-code table (400/401/403/404/405/500/503) with no 429 entry.

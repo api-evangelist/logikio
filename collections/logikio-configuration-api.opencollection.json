@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Configuration API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize a new Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.{sector}.logik.io/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize a new Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Configuration with the given uuid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              }
+            ]
+          },
+          "docs": "Get Configuration with the given uuid"
+        },
+        {
+          "info": {
+            "name": "Update/Save Configuration with the given uuid",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.{sector}.logik.io/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "delta",
+                "value": "",
+                "type": "query",
+                "description": "Delta true only retruns changed data. This is default behavior of the API"
+              },
+              {
+                "name": "save",
+                "value": "",
+                "type": "query",
+                "description": "Pass save parameter as true to save the Configuration and send BOM to connected application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update/Save Configuration with the given uuid"
+        },
+        {
+          "info": {
+            "name": "Access fields in a given Set. Use if Set flagged in relatedChanges param",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/:uuid/sets/:setVariableName",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "setVariableName",
+                "value": "",
+                "type": "path",
+                "description": "Variable name of the Set defined in admin for which data is requested"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number of data to be returned in response"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of Paged Data"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Specify property and order{asc|desc} of sort in format field,asc[desc]"
+              }
+            ]
+          },
+          "docs": "Access fields in a given Set. Use if Set flagged in relatedChanges param"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

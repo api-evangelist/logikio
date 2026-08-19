@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Configuration (V2) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration (V2)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.{sector}.logik.io/api",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize a new Configuration or reconfigure an existing Configuration if passing an existing Logik Configuration UUID in the Request Body."
+        },
+        {
+          "info": {
+            "name": "Get Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/:uuid",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              }
+            ]
+          },
+          "docs": "Returns the Configuration state from the given Configuration UUID. This *does not* allow changes to made to the Configuration. To make changes, reconfigure using the POST call.\n"
+        },
+        {
+          "info": {
+            "name": "Update or Save Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.{sector}.logik.io/api/:uuid",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "delta",
+                "value": "",
+                "type": "query",
+                "description": "If `delta=true` the API only retruns changed data. This is default behavior of the API if the parameter is omitted."
+              },
+              {
+                "name": "save",
+                "value": "",
+                "type": "query",
+                "description": "Pass save parameter as true to save the Configuration and send BOM to connected application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update or Save Configuration with the provided Configuration UUID.\n"
+        },
+        {
+          "info": {
+            "name": "Access fields in a given Set. Use if Set flagged in relatedChanges param",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/:uuid/sets/:setVariableName",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "setVariableName",
+                "value": "",
+                "type": "path",
+                "description": "Variable name of the Set defined in admin for which data is requested"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the paged data results"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+              }
+            ]
+          },
+          "docs": "Access fields in a given Set. Use if Set flagged in relatedChanges param"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

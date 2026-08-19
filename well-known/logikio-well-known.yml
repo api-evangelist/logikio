@@ -1,9 +1,19 @@
-generated: '2026-07-20'
-method: searched
-source: live probes of Logik.io hosts
-# No /.well-known/ discovery documents are published. Absence is valid recorded data.
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of every Logik.io host (api-docs.logik.io, www.logik.io) on 2026-08-13
+# No /.well-known/ discovery documents are published on ANY Logik.io host.
+# Absence is valid recorded data. NO WellKnown / SecurityTxt pointer is emitted in
+# apis.yml, because every probed path missed — the pointer would assert a surface
+# the provider does not serve.
+#
+# The API host itself (https://{tenant}.{sector}.logik.io) is templated and
+# tenant-provisioned, so it cannot be probed anonymously: there is no shared
+# production hostname to request /.well-known/ from. That is recorded below rather
+# than silently omitted.
 hosts:
   - host: https://api-docs.logik.io
+    reachable: true
+    note: Slate single-page API reference (HTTP 200, ~3.9 MB). Every /.well-known/ path returns the site's HTML 404 page.
     documents:
       - path: /.well-known/security.txt
         status: 404
@@ -11,15 +21,47 @@ hosts:
         status: 404
       - path: /.well-known/oauth-authorization-server
         status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
       - path: /.well-known/api-catalog
         status: 404
       - path: /.well-known/ai-plugin.json
         status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /security.txt
+        status: 404
       - path: /llms.txt
         status: 404
   - host: https://www.logik.io
-    note: Marketing host 301-redirects to servicenow.com (post-acquisition); no well-known documents served.
+    reachable: false
+    note: >-
+      Marketing host is retired post-ServiceNow acquisition. Every path — including
+      every /.well-known/ path — 301-redirects cross-host to
+      https://www.servicenow.com/products/cpq.html, whose edge then returns 403 to
+      non-browser clients. Nothing is served from this origin any more.
     documents:
       - path: /.well-known/security.txt
-        status: timeout
+        status: 301
+        redirect: https://www.servicenow.com/products/cpq.html/
+      - path: /.well-known/agent-card.json
+        status: 301
+        redirect: https://www.servicenow.com/products/cpq.html/
+      - path: /llms.txt
+        status: 301
+        redirect: https://www.servicenow.com/products/cpq.html/
+  - host: 'https://{tenant}.{sector}.logik.io'
+    reachable: unknown
+    note: Templated, tenant-provisioned API host. No shared anonymous hostname exists, so /.well-known/ cannot be probed without a customer tenant.
+    documents: []
 documents: []
+security_contact:
+  found: true
+  source: DNS CAA record on logik.io
+  value: 'mailto:security@logik.io'
+  note: >-
+    A security contact IS published, but only as a CAA iodef record — not as a
+    security.txt, not as a disclosure page. That is not a vulnerability disclosure
+    programme, so no Security pointer is emitted. See security/logikio-domain-security.yml.

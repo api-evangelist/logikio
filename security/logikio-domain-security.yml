@@ -1,4 +1,4 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -7,15 +7,20 @@ hosts:
   tls_version: TLSv1.3
   cert_expires: Feb  7 23:59:59 2027 GMT
   hsts: null
+- host: api-docs.logik.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 19 21:48:18 2026 GMT
+  hsts: false
 domains:
 - domain: logik.io
   dnssec: true
   caa:
+  - 0 issue "digicert.com"
+  - 0 issue "amazonaws.com"
   - 0 issue "pki.goog"
   - 0 iodef "mailto:security@logik.io"
   - 0 issue "letsencrypt.org"
-  - 0 issue "amazonaws.com"
-  - 0 issue "digicert.com"
   spf: true
   dmarc: true
   dmarc_policy: quarantine

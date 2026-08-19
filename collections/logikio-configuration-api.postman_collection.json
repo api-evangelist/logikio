@@ -1,0 +1,923 @@
+{
+  "item": [
+    {
+      "id": "4b31f502-2743-462f-b6ff-7dc4a7df87ae",
+      "name": "Configuration",
+      "description": {
+        "content": "APIs to operate on Configuration blueprint to generate BOM",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0dc3dbc9-0c8f-4aed-a38e-5df85516e6fc",
+          "name": "Initialize a new Configuration",
+          "request": {
+            "name": "Initialize a new Configuration",
+            "description": {},
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionContext\": {\n    \"stateful\": \"<boolean>\"\n  },\n  \"partnerData\": {\n    \"product\": {\n      \"configuredProductId\": \"<string>\",\n      \"configurationAttributes\": {\n        \"LGK__ConfigurationId__c\": \"<string>\"\n      }\n    }\n  },\n  \"quote\": {\n    \"SBQQ__PricebookId__c\": \"<string>\"\n  },\n  \"fields\": [\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3f804cf-f775-41d9-8577-10a84bb56590",
+              "name": "Return initial state of fields, messages and products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionContext\": {\n    \"stateful\": \"<boolean>\"\n  },\n  \"partnerData\": {\n    \"product\": {\n      \"configuredProductId\": \"<string>\",\n      \"configurationAttributes\": {\n        \"LGK__ConfigurationId__c\": \"<string>\"\n      }\n    }\n  },\n  \"quote\": {\n    \"SBQQ__PricebookId__c\": \"<string>\"\n  },\n  \"fields\": [\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"value\": \"string\",\n      \"dataType\": \"string\",\n      \"visibilityState\": \"string\",\n      \"editable\": \"string\",\n      \"variableName\": \"string\",\n      \"optionSet\": {\n        \"options\": [\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 7152,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 5101,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"value\": \"string\",\n      \"dataType\": \"string\",\n      \"visibilityState\": \"string\",\n      \"editable\": \"string\",\n      \"variableName\": \"string\",\n      \"optionSet\": {\n        \"options\": [\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 1555,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 6023,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          }\n        ]\n      }\n    }\n  ],\n  \"uuid\": \"string\",\n  \"revision\": 1738,\n  \"valid\": true,\n  \"messages\": [\n    {\n      \"error\": true,\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"error\": false,\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"productChange\": false,\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6078,\n      \"bomType\": \"string\",\n      \"level\": 6152,\n      \"parentProduct\": 7019,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 8830,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 4401.421273077577,\n      \"extPrice\": 2643.372311046942\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 7517,\n      \"bomType\": \"string\",\n      \"level\": 2192,\n      \"parentProduct\": 1137,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 1510,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 1329.2632871769329,\n      \"extPrice\": 5279.189053713977\n    }\n  ],\n  \"layouts\": [\n    {\n      \"url\": \"string\"\n    },\n    {\n      \"url\": \"string\"\n    }\n  ],\n  \"relatedChanges\": [\n    {\n      \"key\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b54a87eb-bbd9-4643-8499-b311b6835807",
+          "name": "Get Configuration with the given uuid",
+          "request": {
+            "name": "Get Configuration with the given uuid",
+            "description": {},
+            "url": {
+              "path": [
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d7147f82-0df0-4daf-87f2-3cf11cd3e572",
+              "name": "Return initial state of fields, messages and products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"value\": \"string\",\n      \"dataType\": \"string\",\n      \"visibilityState\": \"string\",\n      \"editable\": \"string\",\n      \"variableName\": \"string\",\n      \"optionSet\": {\n        \"options\": [\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 1093,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 7789,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"value\": \"string\",\n      \"dataType\": \"string\",\n      \"visibilityState\": \"string\",\n      \"editable\": \"string\",\n      \"variableName\": \"string\",\n      \"optionSet\": {\n        \"options\": [\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 576,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 3370,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          }\n        ]\n      }\n    }\n  ],\n  \"uuid\": \"string\",\n  \"revision\": 176,\n  \"valid\": true,\n  \"messages\": [\n    {\n      \"error\": false,\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"error\": false,\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"productChange\": false,\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 414,\n      \"bomType\": \"string\",\n      \"level\": 2508,\n      \"parentProduct\": 3643,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 9566,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 3781.649157989494,\n      \"extPrice\": 9878.08379521448\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6378,\n      \"bomType\": \"string\",\n      \"level\": 7095,\n      \"parentProduct\": 8860,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 1874,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9649.346928383473,\n      \"extPrice\": 8768.352598787813\n    }\n  ],\n  \"layouts\": [\n    {\n      \"url\": \"string\"\n    },\n    {\n      \"url\": \"string\"\n    }\n  ],\n  \"relatedChanges\": [\n    {\n      \"key\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fb097a9-4a91-42d9-a238-11e332cce522",
+              "name": "Returns Error Message from the server if invalid uuid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab7968e8-496d-4ab7-8d05-9be7584c61f3",
+          "name": "Update/Save Configuration with the given uuid",
+          "request": {
+            "name": "Update/Save Configuration with the given uuid",
+            "description": {},
+            "url": {
+              "path": [
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "delta",
+                  "value": "<boolean>",
+                  "description": "Delta true only retruns changed data. This is default behavior of the API"
+                },
+                {
+                  "disabled": false,
+                  "key": "save",
+                  "value": "<boolean>",
+                  "description": "Pass save parameter as true to save the Configuration and send BOM to connected application"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c02897b-c628-48c3-a796-3cf4f1654b9b",
+              "name": "Return initial state of fields, messages and products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "delta",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "save",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"value\": \"string\",\n      \"dataType\": \"string\",\n      \"visibilityState\": \"string\",\n      \"editable\": \"string\",\n      \"variableName\": \"string\",\n      \"optionSet\": {\n        \"options\": [\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 1093,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 7789,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"value\": \"string\",\n      \"dataType\": \"string\",\n      \"visibilityState\": \"string\",\n      \"editable\": \"string\",\n      \"variableName\": \"string\",\n      \"optionSet\": {\n        \"options\": [\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 576,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"orderNumber\": 3370,\n            \"state\": \"string\",\n            \"value\": \"string\",\n            \"imageUrl\": \"string\"\n          }\n        ]\n      }\n    }\n  ],\n  \"uuid\": \"string\",\n  \"revision\": 176,\n  \"valid\": true,\n  \"messages\": [\n    {\n      \"error\": false,\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"error\": false,\n      \"field\": \"string\",\n      \"message\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"productChange\": false,\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 414,\n      \"bomType\": \"string\",\n      \"level\": 2508,\n      \"parentProduct\": 3643,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 9566,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 3781.649157989494,\n      \"extPrice\": 9878.08379521448\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6378,\n      \"bomType\": \"string\",\n      \"level\": 7095,\n      \"parentProduct\": 8860,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 1874,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9649.346928383473,\n      \"extPrice\": 8768.352598787813\n    }\n  ],\n  \"layouts\": [\n    {\n      \"url\": \"string\"\n    },\n    {\n      \"url\": \"string\"\n    }\n  ],\n  \"relatedChanges\": [\n    {\n      \"key\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e1de9c6-bee6-4219-abd8-591709f68a99",
+              "name": "Returns Error Message from the server ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "delta",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "save",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4de4df8e-7993-4fdd-b604-37ed324e0bce",
+              "name": "Returns Error Message from the server ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "delta",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "save",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"variableName\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b736a9ab-b874-4550-9bbd-985c6db5a4f4",
+          "name": "Access fields in a given Set. Use if Set flagged in relatedChanges param",
+          "request": {
+            "name": "Access fields in a given Set. Use if Set flagged in relatedChanges param",
+            "description": {},
+            "url": {
+              "path": [
+                ":uuid",
+                "sets",
+                ":setVariableName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number of data to be returned in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Size of Paged Data"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Specify property and order{asc|desc} of sort in format field,asc[desc]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "setVariableName",
+                  "description": "(Required) Variable name of the Set defined in admin for which data is requested"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "989cc1bb-15af-4c19-bc6f-854ff2c2867a",
+              "name": "Paginated details for a given Set variable name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "sets",
+                    ":setVariableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setVariableName",
+                      "description": "(Required) Variable name of the Set defined in admin for which data is requested"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"index\": 5300,\n      \"fields\": [\n        {\n          \"value\": \"string\",\n          \"dataType\": \"string\",\n          \"visibilityState\": \"string\",\n          \"editable\": \"string\",\n          \"variableName\": \"string\",\n          \"optionSet\": {\n            \"options\": [\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"value\": \"string\",\n          \"dataType\": \"string\",\n          \"visibilityState\": \"string\",\n          \"editable\": \"string\",\n          \"variableName\": \"string\",\n          \"optionSet\": {\n            \"options\": [\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"index\": 6487,\n      \"fields\": [\n        {\n          \"value\": \"string\",\n          \"dataType\": \"string\",\n          \"visibilityState\": \"string\",\n          \"editable\": \"string\",\n          \"variableName\": \"string\",\n          \"optionSet\": {\n            \"options\": [\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"value\": \"string\",\n          \"dataType\": \"string\",\n          \"visibilityState\": \"string\",\n          \"editable\": \"string\",\n          \"variableName\": \"string\",\n          \"optionSet\": {\n            \"options\": [\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"label\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"orderNumber\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"state\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"value\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"imageUrl\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"offset\": 573,\n    \"pageNumber\": 225,\n    \"pageSize\": 9157,\n    \"paged\": false,\n    \"unpaged\": true\n  },\n  \"totalPages\": 834,\n  \"totalElements\": 7119,\n  \"last\": false,\n  \"size\": 5315,\n  \"number\": 3111,\n  \"numberOfElements\": 5727,\n  \"first\": false,\n  \"empty\": false,\n  \"total\": 9116\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f398349-1972-424a-885a-57338d652d09",
+              "name": "Returns Error Message from the server if invalid uuid or set variable name",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "sets",
+                    ":setVariableName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setVariableName",
+                      "description": "(Required) Variable name of the Set defined in admin for which data is requested"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Logik.io tenant",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenant"
+    },
+    {
+      "description": {
+        "content": "Logik.io sector",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test",
+      "key": "sector"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.{{sector}}.logik.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cbe15887-b8f9-463a-8b0b-8a8492255bed",
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.\n\nContact Support:\n Email: support@logik.io",
+      "type": "text/plain"
+    }
+  }
+}

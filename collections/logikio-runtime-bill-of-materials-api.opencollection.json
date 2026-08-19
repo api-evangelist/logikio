@@ -1,0 +1,208 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Runtime - Bill of Materials API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Runtime - Bill of Materials",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get BOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/:uuid/bom",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the paged data results"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+              },
+              {
+                "name": "bomType",
+                "value": "",
+                "type": "query",
+                "description": "Pass comma separated list of bom types to be returned"
+              }
+            ]
+          },
+          "docs": "Get BOM with the given uuid for current state of Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Sales BOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/:uuid/bom/sales",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the paged data results"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+              }
+            ]
+          },
+          "docs": "Get Sales BOM with the given uuid for current state of Configuration"
+        },
+        {
+          "info": {
+            "name": "Get Manufacturing BOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/:uuid/bom/manufacturing",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the paged data results"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+              }
+            ]
+          },
+          "docs": "Get Manufacturing BOM with the given uuid for current state of Configuration."
+        },
+        {
+          "info": {
+            "name": "Get Custom BOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/:uuid/bom/:custom",
+            "headers": [
+              {
+                "name": "Origin",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "custom",
+                "value": "",
+                "type": "path",
+                "description": "Custom BOM Type name"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique Configuration ID Value"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Size of the paged data results"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]"
+              }
+            ]
+          },
+          "docs": "Get Custom BOM type line items defined in the admin"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

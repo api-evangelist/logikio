@@ -1,0 +1,32 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.logik.io/ (HTTP 301 -> https://www.servicenow.com/products/cpq.html)
+docs: https://api-docs.logik.io/
+# Logik.io publishes NO public pricing page and NO self-serve plan tiers.
+# The product is sold enterprise / contact-sales only, and since the ServiceNow
+# acquisition the entire logik.io marketing surface (including any former pricing
+# or packaging pages) 301-redirects to https://www.servicenow.com/products/cpq.html,
+# which itself carries no published price. Third-party review sites quote
+# ~$105/user/month, but that is NOT provider-published and is deliberately not
+# recorded here as a plan.
+# The developer surface at api-docs.logik.io documents no metered API pricing,
+# no API plan tiers, and no billable quota — API access is a function of the
+# tenant contract, not a purchasable developer plan.
+plan_count: 0
+published_pricing: false
+model: enterprise-contact-sales
+api_access: included-with-tenant
+plans: []
+quotas: []
+evidence:
+  - url: https://www.logik.io/
+    status: 301
+    note: Redirects cross-host to www.servicenow.com/products/cpq.html; edge returns 403 to non-browser clients.
+  - url: https://api-docs.logik.io/
+    status: 200
+    note: Full API reference; contains no pricing, plan, quota or billing section.
+notes: |
+  Access to the Runtime and Admin APIs requires a provisioned Logik.io tenant
+  ({tenant}.{sector}.logik.io) plus tokens minted in the Logik.io Admin
+  (Runtime Clients / Utilities > Admin API Keys). There is no self-serve signup,
+  no free tier, and no published overage schedule.

@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Table Rows API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Tables > Table Rows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add new row to Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables/:tableName",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new row to Table"
+        },
+        {
+          "info": {
+            "name": "Get Table Data Row",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables/:tableName/:rowId",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path",
+                "description": "Row Id"
+              }
+            ]
+          },
+          "docs": "Get Table Data Row"
+        },
+        {
+          "info": {
+            "name": "Update Table Data Row",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables/:tableName/:rowId",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path",
+                "description": "Row Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Table Data Row"
+        },
+        {
+          "info": {
+            "name": "Delete Table Data Row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}.{sector}.logik.io/api/managedTables/v1/managedTables/:tableName/:rowId",
+            "params": [
+              {
+                "name": "tableName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Managed Table"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path",
+                "description": "Row Id"
+              }
+            ]
+          },
+          "docs": "Delete Table Data Row"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

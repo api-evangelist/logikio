@@ -1,0 +1,1006 @@
+{
+  "item": [
+    {
+      "id": "eb61d0d1-bcc9-41ba-bcb3-327b61e372e2",
+      "name": "BOM",
+      "description": {
+        "content": "APIs to retrieve BOM information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75f36f93-7025-4635-99c7-00eea2156a50",
+          "name": "Get Sales BOM with the given uuid for current state of Configuration",
+          "request": {
+            "name": "Get Sales BOM with the given uuid for current state of Configuration",
+            "description": {},
+            "url": {
+              "path": [
+                ":uuid",
+                "bom",
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number of data to be returned in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Size of Paged Data"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Specify property and order{asc|desc} of sort in format field,asc[desc]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5f28389e-df2f-458a-bfc4-9fe27539b3fd",
+              "name": "Return Sales BOM snapshot of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 8655,\n      \"bomType\": \"string\",\n      \"level\": 8007,\n      \"parentProduct\": 6767,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 2403,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 175.31052606577836,\n      \"extPrice\": 3832.4057420119216\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 3292,\n      \"bomType\": \"string\",\n      \"level\": 2551,\n      \"parentProduct\": 8357,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 1386,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 8803.45587143556,\n      \"extPrice\": 617.965343544492\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"offset\": 7742,\n    \"pageNumber\": 8997,\n    \"pageSize\": 7646,\n    \"paged\": false,\n    \"unpaged\": false\n  },\n  \"totalPages\": 5862,\n  \"totalElements\": 9212,\n  \"last\": false,\n  \"size\": 769,\n  \"number\": 5609,\n  \"numberOfElements\": 8664,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 2403\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df594248-6b99-4e40-a583-ce107344ecc8",
+              "name": "Returns Error Message from the server if invalid uuid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96505449-8123-4ae7-b54c-5ded7363c6a8",
+          "name": "Get Custom BOM type line items defined in the admin",
+          "request": {
+            "name": "Get Custom BOM type line items defined in the admin",
+            "description": {},
+            "url": {
+              "path": [
+                ":uuid",
+                "bom",
+                ":custom"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number of data to be returned in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Size of Paged Data"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Specify property and order{asc|desc} of sort in format field,asc[desc]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "custom",
+                  "description": "(Required) Custom BOM Type name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "76feade5-36bb-4690-814b-c262170f5f21",
+              "name": "Return Sales BOM snapshot of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6049,\n      \"bomType\": \"string\",\n      \"level\": 2369,\n      \"parentProduct\": 6164,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 3354,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9869.239084410192,\n      \"extPrice\": 2307.671835930828\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6638,\n      \"bomType\": \"string\",\n      \"level\": 6892,\n      \"parentProduct\": 4030,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 8579,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 5598.672597503077,\n      \"extPrice\": 8680.149761564526\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": false,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"offset\": 9440,\n    \"pageNumber\": 9061,\n    \"pageSize\": 4478,\n    \"paged\": true,\n    \"unpaged\": true\n  },\n  \"totalPages\": 5200,\n  \"totalElements\": 9725,\n  \"last\": true,\n  \"size\": 7199,\n  \"number\": 2842,\n  \"numberOfElements\": 9616,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 7015\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57925704-b569-4fea-bb64-9d559056edc2",
+              "name": "Returns Error Message from the server if invalid uuid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    ":custom"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom",
+                      "description": "(Required) Custom BOM Type name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff5a69ed-36bb-4a9c-b08b-6b9ddb7bb01a",
+          "name": "Get Manufacturing BOM with the given uuid for current state of Configuration",
+          "request": {
+            "name": "Get Manufacturing BOM with the given uuid for current state of Configuration",
+            "description": {},
+            "url": {
+              "path": [
+                ":uuid",
+                "bom",
+                "manufacturing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number of data to be returned in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Size of Paged Data"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Specify property and order{asc|desc} of sort in format field,asc[desc]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "71fad9b9-420c-4157-8cf0-71269f9d2b68",
+              "name": "Return Manufacturing BOM snapshot of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6049,\n      \"bomType\": \"string\",\n      \"level\": 2369,\n      \"parentProduct\": 6164,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 3354,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9869.239084410192,\n      \"extPrice\": 2307.671835930828\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6638,\n      \"bomType\": \"string\",\n      \"level\": 6892,\n      \"parentProduct\": 4030,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 8579,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 5598.672597503077,\n      \"extPrice\": 8680.149761564526\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": false,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"offset\": 9440,\n    \"pageNumber\": 9061,\n    \"pageSize\": 4478,\n    \"paged\": true,\n    \"unpaged\": true\n  },\n  \"totalPages\": 5200,\n  \"totalElements\": 9725,\n  \"last\": true,\n  \"size\": 7199,\n  \"number\": 2842,\n  \"numberOfElements\": 9616,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 7015\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7684ac43-acc2-4b80-8357-b83dada0355c",
+              "name": "Returns Error Message from the server if invalid uuid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    "manufacturing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2239e7ae-56c2-4f9e-bb44-35f6a7995c7e",
+          "name": "Get Entire BOM with the given uuid for current state of Configuration",
+          "request": {
+            "name": "Get Entire BOM with the given uuid for current state of Configuration",
+            "description": {},
+            "url": {
+              "path": [
+                ":uuid",
+                "bom",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number of data to be returned in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Size of Paged Data"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Specify property and order{asc|desc} of sort in format field,asc[desc]"
+                },
+                {
+                  "disabled": false,
+                  "key": "bomType",
+                  "value": "<string>",
+                  "description": "Pass comma separated list of bom types to be returned"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique Configuration ID Value"
+                },
+                {
+                  "description": "Logik.io tenant",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                },
+                {
+                  "description": "Logik.io sector",
+                  "type": "any",
+                  "value": "{{sector}}",
+                  "key": "sector"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3703ba68-3aff-4ae6-8951-acd8bde6f32f",
+              "name": "Return Entire BOM snapshot of Configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6049,\n      \"bomType\": \"string\",\n      \"level\": 2369,\n      \"parentProduct\": 6164,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 3354,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 9869.239084410192,\n      \"extPrice\": 2307.671835930828\n    },\n    {\n      \"id\": \"string\",\n      \"selectionType\": \"string\",\n      \"quantity\": 6638,\n      \"bomType\": \"string\",\n      \"level\": 6892,\n      \"parentProduct\": 4030,\n      \"notes\": \"string\",\n      \"uniqueIdentifier\": 8579,\n      \"description\": \"string\",\n      \"externalId\": \"string\",\n      \"name\": \"string\",\n      \"price\": 5598.672597503077,\n      \"extPrice\": 8680.149761564526\n    }\n  ],\n  \"pageable\": {\n    \"sort\": {\n      \"empty\": false,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"offset\": 9440,\n    \"pageNumber\": 9061,\n    \"pageSize\": 4478,\n    \"paged\": true,\n    \"unpaged\": true\n  },\n  \"totalPages\": 5200,\n  \"totalElements\": 9725,\n  \"last\": true,\n  \"size\": 7199,\n  \"number\": 2842,\n  \"numberOfElements\": 9616,\n  \"first\": true,\n  \"empty\": false,\n  \"total\": 7015\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65276689-3f3e-440e-98d1-4e49dfc275c9",
+              "name": "Returns Error Message from the server if invalid uuid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":uuid",
+                    "bom",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bomType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique Configuration ID Value"
+                    },
+                    {
+                      "description": "Logik.io tenant",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    },
+                    {
+                      "description": "Logik.io sector",
+                      "type": "any",
+                      "value": "{{sector}}",
+                      "key": "sector"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Logik.io tenant",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenant"
+    },
+    {
+      "description": {
+        "content": "Logik.io sector",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "test",
+      "key": "sector"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.{{sector}}.logik.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "74354e40-22e7-430d-9ba9-664aed8b9176",
+    "name": "Logik.io Admin API - Blueprint Import/Export Blueprint > Export BOM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.\n\nContact Support:\n Email: support@logik.io",
+      "type": "text/plain"
+    }
+  }
+}
