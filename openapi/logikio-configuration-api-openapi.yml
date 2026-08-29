@@ -1,22 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Configuration API
-  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
-  version: 1.0.0
+  title: Logik Configurator Runtime Configuration API
+  description: Logik.io End User API Definition. Shows payload structure and schema, authroization approach and endpoint format. Can be used for custom UI or headless implementations.
   contact:
     email: support@logik.io
+  version: 2.0.0
 servers:
-- url: https://{tenant}.{sector}.logik.io
-  description: Logik Environment
+- url: https://{tenantName}.{sectorName}.logik.io/api
   variables:
-    tenant:
-      default: example
-      description: Logik.io tenant
-    sector:
-      default: test
-      description: Logik.io sector
-security:
-- bearerAuth: []
+    tenantName:
+      default: demo
+      description: Customer ID assigned by the service provider
+    sectorName:
+      default: demo
+      description: Customer ID assigned by the service provider
 tags:
 - name: Configuration
   description: APIs to operate on Configuration blueprint to generate BOM
@@ -174,42 +171,110 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    Product:
+    SetsContent:
       type: object
       properties:
-        id:
-          type: string
-        selectionType:
-          type: string
-        quantity:
+        index:
           type: integer
-        bomType:
-          type: string
-        level:
-          type: integer
-        parentProduct:
-          type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
-          type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
-    FieldPayload:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    ErrorResponse:
       type: object
       properties:
-        variableName:
+        errorMessage:
           type: string
+    ApiResponse:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        uuid:
+          type: string
+        revision:
+          type: integer
+        valid:
+          type: boolean
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        productChange:
+          type: boolean
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        layouts:
+          type: array
+          items:
+            required:
+            - url
+            type: object
+            properties:
+              url:
+                type: string
+        relatedChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/relatedChangesValue'
+    Message:
+      required:
+      - error
+      - field
+      - message
+      - type
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        error:
+          type: boolean
+        field:
+          type: string
+    Field:
+      type: object
+      properties:
         value:
           type: string
+        dataType:
+          type: string
+        visibilityState:
+          type: string
+        editable:
+          type: string
+        variableName:
+          type: string
+        optionSet:
+          required:
+          - options
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                required:
+                - label
+                - orderNumber
+                - state
+                - value
+                type: object
+                properties:
+                  label:
+                    type: string
+                  state:
+                    type: string
+                  value:
+                    type: string
+                  imageUrl:
+                    type: string
+                  orderNumber:
+                    type: integer
     SetsResponse:
       type: object
       properties:
@@ -257,6 +322,13 @@ components:
           type: boolean
         total:
           type: integer
+    UpdateConfig:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldPayload'
     InitConfig:
       type: object
       properties:
@@ -291,11 +363,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FieldPayload'
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
     relatedChangesValue:
       type: object
       properties:
@@ -304,114 +371,43 @@ components:
         type:
           type: string
           description: Value of SET|PRODUCT which will return KEY value as variable name of set or static value products
-    Field:
+    FieldPayload:
       type: object
       properties:
-        value:
-          type: string
-        dataType:
-          type: string
-        visibilityState:
-          type: string
-        editable:
-          type: string
         variableName:
           type: string
-        optionSet:
-          required:
-          - options
-          type: object
-          properties:
-            options:
-              type: array
-              items:
-                required:
-                - label
-                - orderNumber
-                - state
-                - value
-                type: object
-                properties:
-                  label:
-                    type: string
-                  state:
-                    type: string
-                  value:
-                    type: string
-                  imageUrl:
-                    type: string
-                  orderNumber:
-                    type: integer
-    ApiResponse:
+        value:
+          type: string
+    Product:
       type: object
       properties:
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        uuid:
+        id:
           type: string
-        revision:
+        selectionType:
+          type: string
+        quantity:
           type: integer
-        valid:
-          type: boolean
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        productChange:
-          type: boolean
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        layouts:
-          type: array
-          items:
-            required:
-            - url
-            type: object
-            properties:
-              url:
-                type: string
-        relatedChanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/relatedChangesValue'
-    SetsContent:
-      type: object
-      properties:
-        index:
+        bomType:
+          type: string
+        level:
           type: integer
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-    UpdateConfig:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldPayload'
-    Message:
-      required:
-      - error
-      - field
-      - message
-      - type
-      type: object
-      properties:
-        message:
+        parentProduct:
+          type: integer
+        notes:
           type: string
-        type:
+        uniqueIdentifier:
+          type: integer
+        description:
           type: string
-        error:
-          type: boolean
-        field:
+        externalId:
           type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
   securitySchemes:
-    bearerAuth:
+    BearerAuth:
       type: http
       scheme: bearer
-      description: Admin API Bearer Token

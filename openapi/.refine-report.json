@@ -1,34 +1,45 @@
 {
   "provider": "logikio",
   "sources": [
-    "logikio-blueprint-export-api-openapi.yml",
-    "logikio-blueprint-import-api-openapi.yml",
-    "logikio-bom-api-openapi.yml",
-    "logikio-configuration-api-openapi.yml",
-    "logikio-configuration-v2-api-openapi.yml",
-    "logikio-managed-tables-export-tables-api-openapi.yml",
-    "logikio-managed-tables-import-tables-api-openapi.yml",
-    "logikio-managed-tables-metadata-api-openapi.yml",
-    "logikio-managed-tables-table-rows-api-openapi.yml",
-    "logikio-managed-tables-tables-api-openapi.yml",
-    "logikio-runtime-bill-of-materials-api-openapi.yml"
+    "_original/logikio-admin-blueprint-openapi-original.yml",
+    "_original/logikio-admin-managed-tables-openapi-original.yml",
+    "_original/logikio-runtime-v1-openapi-original.yml",
+    "_original/logikio-runtime-v2-openapi-original.yml"
   ],
   "outputs": [
     "logikio-blueprint-export-api-openapi.yml",
     "logikio-blueprint-import-api-openapi.yml",
-    "logikio-bom-api-openapi.yml",
-    "logikio-configuration-api-openapi.yml",
-    "logikio-configuration-v2-api-openapi.yml",
     "logikio-managed-tables-export-tables-api-openapi.yml",
     "logikio-managed-tables-import-tables-api-openapi.yml",
     "logikio-managed-tables-metadata-api-openapi.yml",
     "logikio-managed-tables-table-rows-api-openapi.yml",
     "logikio-managed-tables-tables-api-openapi.yml",
+    "logikio-bom-api-openapi.yml",
+    "logikio-configuration-api-openapi.yml",
+    "logikio-configuration-v2-api-openapi.yml",
     "logikio-runtime-bill-of-materials-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "logikio-admin-blueprint-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "logikio-admin-managed-tables-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "logikio-runtime-v1-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "logikio-runtime-v2-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "logikio-blueprint-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-blueprint-import-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-bom-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-configuration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-configuration-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-managed-tables-export-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-managed-tables-import-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-managed-tables-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-managed-tables-table-rows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-managed-tables-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "logikio-runtime-bill-of-materials-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

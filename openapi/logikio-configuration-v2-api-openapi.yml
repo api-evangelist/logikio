@@ -1,13 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Configuration (V2) API
-  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
-  version: 1.0.0
+  title: Logik Configurator Runtime APIs V2 Configuration (V2) API
+  version: 2.1.0
+  description: "Logik.io End User API Definition. Shows payload structure and schema, authroization approach and endpoint format. Can be used for custom UI or headless implementations.\n\n## Important Versioning Information\n\nBlueprints that use Product Picker Fields ***must*** use the `application/vnd.logik.cfg-v2+json` Content-Type when making requests.\n\n The Runtime APIs are versioned using different Content-Types. There are 2 Content-Type formats, `application/json` for v1 and `application/vnd.logik.cfg-v2+json` for v2.\n  - `application/json`: can be used with regular Logik field types (number, boolean, text and picklist) and sets.\n  - `application/vnd.logik.cfg-v2+json`: can be used with all regular field types as well as Product Picker Fields.\n  \nThe Accept Header should match the Content-Type being used, either:\n  - `application/json`: for v1.\n  - `application/vnd.logik.cfg-v2+json, application/json`: for v2.\n"
   contact:
     email: support@logik.io
 servers:
 - url: https://{tenant}.{sector}.logik.io
-  description: Logik Environment
   variables:
     tenant:
       default: example
@@ -16,7 +15,7 @@ servers:
       default: test
       description: Logik.io sector
 security:
-- bearerAuth: []
+- RuntimeTokenBearerAuth: []
 tags:
 - name: Configuration (V2)
   description: Creating new configurations, reconfiguring existing configurations, making updates to a configuration and saving changes.
@@ -151,83 +150,69 @@ paths:
         5XX:
           $ref: '#/components/responses/ServerError'
 components:
-  parameters:
-    queryLimit:
-      in: query
-      name: limit
-      description: Size of the paged data results
-      schema:
-        type: number
-        default: 100
-      required: true
-    queryDelta:
-      name: delta
-      in: query
-      description: If `delta=true` the API only retruns changed data. This is default behavior of the API if the parameter is omitted.
-      schema:
-        type: boolean
-        default: true
-    headerOrigin:
-      in: header
-      name: Origin
-      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
-      schema:
-        type: string
-      required: true
-    querySave:
-      name: save
-      in: query
-      description: Pass save parameter as true to save the Configuration and send BOM to connected application
-      schema:
-        type: boolean
-        default: false
-    querySort:
-      in: query
-      name: sort
-      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
-      schema:
-        type: string
-        default: modified%2CDESC
-      required: true
-    queryPage:
-      in: query
-      name: page
-      description: Page number of results to return
-      schema:
-        type: number
-        default: 0
-      required: true
-    ConfigurationUUID:
-      in: path
-      name: uuid
-      description: Unique Configuration ID Value
-      required: true
-      schema:
-        type: string
-  responses:
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    InitConfigV2:
+      type: object
+      properties:
+        sessionContext:
+          required:
+          - stateful
+          properties:
+            stateful:
+              type: boolean
+          type: object
+        partnerData:
+          properties:
+            quote:
+              properties:
+                SBQQ__PricebookId__c:
+                  type: string
+                LGK__QueriedEditAccess__c:
+                  type: string
+              type: object
+            product:
+              properties:
+                configuredProductId:
+                  type: string
+                configurationAttributes:
+                  properties:
+                    LGK__Logik_Id__c:
+                      type: string
+                  type: object
+              type: object
+          type: object
+        configurableProduct:
+          properties:
+            responseState:
+              required:
+              - defaultPagination
+              properties:
+                defaultPagination:
+                  required:
+                  - pageSize
+                  - pageNumber
+                  properties:
+                    pageSize:
+                      type: number
+                    pageNumber:
+                      type: number
+                  type: object
+              type: object
+          type: object
+        productId:
+          type: string
+      example:
+        sessionContext:
+          stateful: true
+        productId: 01t6e000009bOeLAAU
     Field:
       type: object
       properties:
@@ -266,6 +251,131 @@ components:
                     type: string
                   orderNumber:
                     type: integer
+    SetsContent:
+      type: object
+      properties:
+        index:
+          type: integer
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    Message:
+      required:
+      - error
+      - field
+      - message
+      - type
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        error:
+          type: boolean
+        field:
+          type: string
+    SetsResponse:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/SetsContent'
+        pageable:
+          type: object
+          properties:
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              type: integer
+            pageNumber:
+              type: integer
+            pageSize:
+              type: integer
+            paged:
+              type: boolean
+            unpaged:
+              type: boolean
+        totalPages:
+          type: integer
+        totalElements:
+          type: integer
+        last:
+          type: boolean
+        size:
+          type: integer
+        number:
+          type: integer
+        numberOfElements:
+          type: integer
+        first:
+          type: boolean
+        empty:
+          type: boolean
+        total:
+          type: integer
+    UpdateConfigV2:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              variableName:
+                type: string
+              value:
+                type: boolean
+              index:
+                type: number
+              set:
+                type: string
+              uniqueName:
+                type: string
+        responseState:
+          properties:
+            setPagination:
+              properties:
+                additionalProperties:
+                  required:
+                  - pageSize
+                  - pageNumber
+                  properties:
+                    pageSize:
+                      type: number
+                    pageNumber:
+                      type: number
+                  type: object
+              type: object
+            defaultPagination:
+              required:
+              - pageSize
+              - pageNumber
+              properties:
+                pageSize:
+                  type: number
+                  default: 10
+                pageNumber:
+                  type: number
+                  default: 0
+              type: object
+          type: object
+      example:
+        fields:
+        - variableName: cpuPicker.select
+          uniqueName: cpuPicker-1003-cpuPicker.select
+          value: true
+          set: cpuPicker
+          index: 3
     ConfigResponseV2:
       type: object
       properties:
@@ -1793,92 +1903,6 @@ components:
         - url: /blueprints/8/revisions/LATEST/layouts/1
           label: basic
           variableName: pickerGeneral_basic
-    UpdateConfigV2:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              variableName:
-                type: string
-              value:
-                type: boolean
-              index:
-                type: number
-              set:
-                type: string
-              uniqueName:
-                type: string
-        responseState:
-          properties:
-            setPagination:
-              properties:
-                additionalProperties:
-                  required:
-                  - pageSize
-                  - pageNumber
-                  properties:
-                    pageSize:
-                      type: number
-                    pageNumber:
-                      type: number
-                  type: object
-              type: object
-            defaultPagination:
-              required:
-              - pageSize
-              - pageNumber
-              properties:
-                pageSize:
-                  type: number
-                  default: 10
-                pageNumber:
-                  type: number
-                  default: 0
-              type: object
-          type: object
-      example:
-        fields:
-        - variableName: cpuPicker.select
-          uniqueName: cpuPicker-1003-cpuPicker.select
-          value: true
-          set: cpuPicker
-          index: 3
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    SetsContent:
-      type: object
-      properties:
-        index:
-          type: integer
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-    Message:
-      required:
-      - error
-      - field
-      - message
-      - type
-      type: object
-      properties:
-        message:
-          type: string
-        type:
-          type: string
-        error:
-          type: boolean
-        field:
-          type: string
     Product:
       type: object
       properties:
@@ -1908,107 +1932,82 @@ components:
           type: number
         extPrice:
           type: number
-    InitConfigV2:
-      type: object
-      properties:
-        sessionContext:
-          required:
-          - stateful
-          properties:
-            stateful:
-              type: boolean
-          type: object
-        partnerData:
-          properties:
-            quote:
-              properties:
-                SBQQ__PricebookId__c:
-                  type: string
-                LGK__QueriedEditAccess__c:
-                  type: string
-              type: object
-            product:
-              properties:
-                configuredProductId:
-                  type: string
-                configurationAttributes:
-                  properties:
-                    LGK__Logik_Id__c:
-                      type: string
-                  type: object
-              type: object
-          type: object
-        configurableProduct:
-          properties:
-            responseState:
-              required:
-              - defaultPagination
-              properties:
-                defaultPagination:
-                  required:
-                  - pageSize
-                  - pageNumber
-                  properties:
-                    pageSize:
-                      type: number
-                    pageNumber:
-                      type: number
-                  type: object
-              type: object
-          type: object
-        productId:
-          type: string
-      example:
-        sessionContext:
-          stateful: true
-        productId: 01t6e000009bOeLAAU
-    SetsResponse:
-      type: object
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/SetsContent'
-        pageable:
-          type: object
-          properties:
-            sort:
-              type: object
-              properties:
-                empty:
-                  type: boolean
-                sorted:
-                  type: boolean
-                unsorted:
-                  type: boolean
-            offset:
-              type: integer
-            pageNumber:
-              type: integer
-            pageSize:
-              type: integer
-            paged:
-              type: boolean
-            unpaged:
-              type: boolean
-        totalPages:
-          type: integer
-        totalElements:
-          type: integer
-        last:
-          type: boolean
-        size:
-          type: integer
-        number:
-          type: integer
-        numberOfElements:
-          type: integer
-        first:
-          type: boolean
-        empty:
-          type: boolean
-        total:
-          type: integer
+  parameters:
+    queryDelta:
+      name: delta
+      in: query
+      description: If `delta=true` the API only retruns changed data. This is default behavior of the API if the parameter is omitted.
+      schema:
+        type: boolean
+        default: true
+    ConfigurationUUID:
+      in: path
+      name: uuid
+      description: Unique Configuration ID Value
+      required: true
+      schema:
+        type: string
+    querySort:
+      in: query
+      name: sort
+      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
+      schema:
+        type: string
+        default: modified%2CDESC
+      required: true
+    queryLimit:
+      in: query
+      name: limit
+      description: Size of the paged data results
+      schema:
+        type: number
+        default: 100
+      required: true
+    querySave:
+      name: save
+      in: query
+      description: Pass save parameter as true to save the Configuration and send BOM to connected application
+      schema:
+        type: boolean
+        default: false
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
+      required: true
+    queryPage:
+      in: query
+      name: page
+      description: Page number of results to return
+      schema:
+        type: number
+        default: 0
+      required: true
+  responses:
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   requestBodies:
     InitializeConfigurationV2:
       description: Initialization Payload
@@ -2018,7 +2017,7 @@ components:
           schema:
             $ref: '#/components/schemas/InitConfigV2'
   securitySchemes:
-    bearerAuth:
+    RuntimeTokenBearerAuth:
       type: http
       scheme: bearer
-      description: Admin API Bearer Token
+      description: "Runtime Token to use for requests. Created in the Logik.io Admin, under Runtime Clients. \n\nMust also be configured to allow the Origin that is passed as a Header parameter in all requests."

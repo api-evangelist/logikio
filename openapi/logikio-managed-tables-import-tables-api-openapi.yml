@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Managed Tables > Import Tables API
-  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
+  title: Logik.io Admin API - Managed Tables Managed Tables > Import Tables API
   version: 1.0.0
+  description: Logik.io Admin API - Managed Tables Definition. These APIs can be used in headless implementations to perform administrative tasks
   contact:
     email: support@logik.io
 servers:
@@ -107,50 +107,7 @@ paths:
         5XX:
           $ref: '#/components/responses/ServerError'
 components:
-  schemas:
-    JobResponse:
-      properties:
-        id:
-          type: number
-        started:
-          type: string
-          format: date-time
-        jobType:
-          type: string
-        status:
-          type: string
-        finished:
-          type: string
-          format: date-time
-          nullable: true
-      example:
-        id: 6,
-        started: '2023-05-31T02:51:16.550561712Z'
-        finished: null
-        jobType: TABLE_EXPORT
-        status: STARTED
-    ErrorResponse:
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
   responses:
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-82DB4CF583054DF0930EDE9BE
-            errorMessage: An unexpected error occurred.
-            timestamp: '2023-05-31T02:42:40.087287033Z'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
     BadRequest:
       description: Bad request. See `errorMessage` for additional details.
       content:
@@ -173,6 +130,50 @@ components:
             timestamp: '2023-05-31T02:07:58.447433023Z'
     Forbidden:
       description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-82DB4CF583054DF0930EDE9BE
+            errorMessage: An unexpected error occurred.
+            timestamp: '2023-05-31T02:42:40.087287033Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+  schemas:
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    JobResponse:
+      properties:
+        id:
+          type: number
+        started:
+          type: string
+          format: date-time
+        jobType:
+          type: string
+        status:
+          type: string
+        finished:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      example:
+        id: 6,
+        started: '2023-05-31T02:51:16.550561712Z'
+        finished: null
+        jobType: TABLE_EXPORT
+        status: STARTED
   securitySchemes:
     bearerAuth:
       type: http

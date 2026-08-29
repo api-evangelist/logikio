@@ -1,13 +1,12 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export Runtime - Bill of Materials API
-  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
-  version: 1.0.0
+  title: Logik Configurator Runtime APIs V2 Runtime - Bill of Materials API
+  version: 2.1.0
+  description: "Logik.io End User API Definition. Shows payload structure and schema, authroization approach and endpoint format. Can be used for custom UI or headless implementations.\n\n## Important Versioning Information\n\nBlueprints that use Product Picker Fields ***must*** use the `application/vnd.logik.cfg-v2+json` Content-Type when making requests.\n\n The Runtime APIs are versioned using different Content-Types. There are 2 Content-Type formats, `application/json` for v1 and `application/vnd.logik.cfg-v2+json` for v2.\n  - `application/json`: can be used with regular Logik field types (number, boolean, text and picklist) and sets.\n  - `application/vnd.logik.cfg-v2+json`: can be used with all regular field types as well as Product Picker Fields.\n  \nThe Accept Header should match the Content-Type being used, either:\n  - `application/json`: for v1.\n  - `application/vnd.logik.cfg-v2+json, application/json`: for v2.\n"
   contact:
     email: support@logik.io
 servers:
 - url: https://{tenant}.{sector}.logik.io
-  description: Logik Environment
   variables:
     tenant:
       default: example
@@ -16,7 +15,7 @@ servers:
       default: test
       description: Logik.io sector
 security:
-- bearerAuth: []
+- RuntimeTokenBearerAuth: []
 tags:
 - name: Runtime - Bill of Materials
   description: Get Bill of Materials (BOM) information for a given configuration UUID.
@@ -153,75 +152,30 @@ paths:
         5XX:
           $ref: '#/components/responses/ServerError'
 components:
-  parameters:
-    queryPage:
-      in: query
-      name: page
-      description: Page number of results to return
-      schema:
-        type: number
-        default: 0
-      required: true
-    queryLimit:
-      in: query
-      name: limit
-      description: Size of the paged data results
-      schema:
-        type: number
-        default: 100
-      required: true
-    headerOrigin:
-      in: header
-      name: Origin
-      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
-      schema:
-        type: string
-      required: true
-    querySort:
-      in: query
-      name: sort
-      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
-      schema:
-        type: string
-        default: modified%2CDESC
-      required: true
-    ConfigurationUUID:
-      in: path
-      name: uuid
-      description: Unique Configuration ID Value
-      required: true
-      schema:
-        type: string
+  responses:
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
   schemas:
-    Product:
-      type: object
-      properties:
-        id:
-          type: string
-        selectionType:
-          type: string
-        quantity:
-          type: integer
-        bomType:
-          type: string
-        level:
-          type: integer
-        parentProduct:
-          type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
-          type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
     ErrorResponse:
       type: object
       properties:
@@ -338,31 +292,76 @@ components:
           parentProduct: motherboard
           productFamily: Hardware
           effectiveParent: motherboard
-  responses:
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        selectionType:
+          type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
+  parameters:
+    querySort:
+      in: query
+      name: sort
+      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
+      schema:
+        type: string
+        default: modified%2CDESC
+      required: true
+    queryLimit:
+      in: query
+      name: limit
+      description: Size of the paged data results
+      schema:
+        type: number
+        default: 100
+      required: true
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
+      required: true
+    ConfigurationUUID:
+      in: path
+      name: uuid
+      description: Unique Configuration ID Value
+      required: true
+      schema:
+        type: string
+    queryPage:
+      in: query
+      name: page
+      description: Page number of results to return
+      schema:
+        type: number
+        default: 0
+      required: true
   securitySchemes:
-    bearerAuth:
+    RuntimeTokenBearerAuth:
       type: http
       scheme: bearer
-      description: Admin API Bearer Token
+      description: "Runtime Token to use for requests. Created in the Logik.io Admin, under Runtime Clients. \n\nMust also be configured to allow the Origin that is passed as a Header parameter in all requests."

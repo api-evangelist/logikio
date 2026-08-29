@@ -1,22 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export BOM API
-  description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
-  version: 1.0.0
+  title: Logik Configurator Runtime BOM API
+  description: Logik.io End User API Definition. Shows payload structure and schema, authroization approach and endpoint format. Can be used for custom UI or headless implementations.
   contact:
     email: support@logik.io
+  version: 2.0.0
 servers:
-- url: https://{tenant}.{sector}.logik.io
-  description: Logik Environment
+- url: https://{tenantName}.{sectorName}.logik.io/api
   variables:
-    tenant:
-      default: example
-      description: Logik.io tenant
-    sector:
-      default: test
-      description: Logik.io sector
-security:
-- bearerAuth: []
+    tenantName:
+      default: demo
+      description: Customer ID assigned by the service provider
+    sectorName:
+      default: demo
+      description: Customer ID assigned by the service provider
 tags:
 - name: BOM
   description: APIs to retrieve BOM information
@@ -206,6 +203,11 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
     BOMResponse:
       type: object
       properties:
@@ -282,13 +284,7 @@ components:
           type: number
         extPrice:
           type: number
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
   securitySchemes:
-    bearerAuth:
+    BearerAuth:
       type: http
       scheme: bearer
-      description: Admin API Bearer Token
