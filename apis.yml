@@ -48,6 +48,7 @@ tags:
 - Company
 - Sales Tech
 - CPQ
+- Configure Price Quote
 - Product Configuration
 - Bill of Materials
 - E-Commerce
@@ -182,6 +183,11 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/servicenow/
+  name: ServiceNow
+  x-relationship: acquired
+  x-evidence: "io was acquired by ServiceNow and is now also marketed as ServiceNow CPQ / Logik."
 - type: Overlay
   url: overlays/logikio-admin-blueprint-overlay.yaml
 - type: Website
