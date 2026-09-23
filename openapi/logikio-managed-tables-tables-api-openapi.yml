@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Managed Tables Managed Tables > Tables API
+  title: Logik.io Admin API - Managed Tables Managed Tables > Tables…
   version: 1.0.0
   description: Logik.io Admin API - Managed Tables Definition. These APIs can be used in headless implementations to perform administrative tasks
   contact:
@@ -43,6 +43,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: getApiManagedTablesV1ManagedTables
+      x-operation-id-source: derived
     post:
       tags:
       - Managed Tables > Tables
@@ -69,6 +71,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: postApiManagedTablesV1ManagedTables
+      x-operation-id-source: derived
   /api/managedTables/v2/managedTables/{tableName}:
     get:
       tags:
@@ -98,6 +102,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: getApiManagedTablesV2ManagedTablesByTableName
+      x-operation-id-source: derived
     delete:
       tags:
       - Managed Tables > Tables
@@ -122,42 +128,9 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: deleteApiManagedTablesV2ManagedTablesByTableName
+      x-operation-id-source: derived
 components:
-  responses:
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-7A407E7202264005AD03A14D9
-            errorMessage: Rows must not be empty.
-            timestamp: '2023-05-31T02:08:58.235882682Z'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-C2BD5E131995442CABF255BCD
-            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
-            timestamp: '2023-05-31T02:07:58.447433023Z'
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-82DB4CF583054DF0930EDE9BE
-            errorMessage: An unexpected error occurred.
-            timestamp: '2023-05-31T02:42:40.087287033Z'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
   schemas:
     ColumnResponse:
       type: object
@@ -168,13 +141,6 @@ components:
           DATE_CREATED:
             type: string
       - $ref: '#/components/schemas/ColumnWithId'
-    Column:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ColumnMetadata'
-      - properties:
-          orderNumber:
-            type: integer
     ErrorResponse:
       properties:
         errorCode:
@@ -184,6 +150,62 @@ components:
         timestamp:
           type: string
           format: date-time
+    ManagedTableCreatePayload:
+      required:
+      - name
+      - description
+      - columns
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnMetadata'
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
+    TableResponse:
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnResponse'
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        totalPages:
+          type: number
+        totalElements:
+          type: number
+        last:
+          type: boolean
+        size:
+          type: number
+        number:
+          type: number
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        numberOfElements:
+          type: number
+        empty:
+          type: boolean
+    Column:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ColumnMetadata'
+      - properties:
+          orderNumber:
+            type: integer
     ManagedTableResponse:
       type: object
       properties:
@@ -263,55 +285,28 @@ components:
         first: true
         numberOfElements: 2
         empty: false
-    ManagedTableCreatePayload:
-      required:
-      - name
-      - description
-      - columns
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/ColumnMetadata'
-    Sort:
+    Pageable:
       type: object
       properties:
-        empty:
-          type: boolean
-        unsorted:
-          type: boolean
-        sorted:
-          type: boolean
-    TableResponse:
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ColumnResponse'
-        pageable:
-          $ref: '#/components/schemas/Pageable'
-        totalPages:
-          type: number
-        totalElements:
-          type: number
-        last:
-          type: boolean
-        size:
-          type: number
-        number:
-          type: number
         sort:
           $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
-        numberOfElements:
+        offset:
           type: number
-        empty:
+        pageNumber:
+          type: number
+        pageSize:
+          type: number
+        paged:
           type: boolean
+        unpaged:
+          type: boolean
+    ColumnWithId:
+      type: object
+      properties:
+        ID:
+          type: number
+        additionalProperties:
+          type: string
     ManagedTableCreateResponse:
       properties:
         dateCreated:
@@ -327,13 +322,6 @@ components:
           items:
             $ref: '#/components/schemas/Column'
         description:
-          type: string
-    ColumnWithId:
-      type: object
-      properties:
-        ID:
-          type: number
-        additionalProperties:
           type: string
     ColumnMetadata:
       type: object
@@ -351,21 +339,41 @@ components:
           - number
         description:
           type: string
-    Pageable:
-      type: object
-      properties:
-        sort:
-          $ref: '#/components/schemas/Sort'
-        offset:
-          type: number
-        pageNumber:
-          type: number
-        pageSize:
-          type: number
-        paged:
-          type: boolean
-        unpaged:
-          type: boolean
+  responses:
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-C2BD5E131995442CABF255BCD
+            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
+            timestamp: '2023-05-31T02:07:58.447433023Z'
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-82DB4CF583054DF0930EDE9BE
+            errorMessage: An unexpected error occurred.
+            timestamp: '2023-05-31T02:42:40.087287033Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Managed Tables Managed Tables > Metadata API
+  title: Logik.io Admin API - Managed Tables Managed Tables >…
   version: 1.0.0
   description: Logik.io Admin API - Managed Tables Definition. These APIs can be used in headless implementations to perform administrative tasks
   contact:
@@ -50,6 +50,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: getApiManagedTablesV1ManagedTablesByTableNameMetadata
+      x-operation-id-source: derived
   /api/managedTables/v1/managedTables/{tableName}/metadata/columns:
     patch:
       tags:
@@ -80,6 +82,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: patchApiManagedTablesV1ManagedTablesByTableNameMetadataColumns
+      x-operation-id-source: derived
   /api/managedTables/v1/managedTables/{tableName}/metadata/columns/{columnName}:
     delete:
       tags:
@@ -111,50 +115,10 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: deleteApiManagedTablesV1ManagedTablesByTableNameMetadataColumnsByColumnName
+      x-operation-id-source: derived
 components:
-  responses:
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-7A407E7202264005AD03A14D9
-            errorMessage: Rows must not be empty.
-            timestamp: '2023-05-31T02:08:58.235882682Z'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-C2BD5E131995442CABF255BCD
-            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
-            timestamp: '2023-05-31T02:07:58.447433023Z'
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-82DB4CF583054DF0930EDE9BE
-            errorMessage: An unexpected error occurred.
-            timestamp: '2023-05-31T02:42:40.087287033Z'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
   schemas:
-    Column:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ColumnMetadata'
-      - properties:
-          orderNumber:
-            type: integer
     ErrorResponse:
       properties:
         errorCode:
@@ -164,6 +128,13 @@ components:
         timestamp:
           type: string
           format: date-time
+    Column:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ColumnMetadata'
+      - properties:
+          orderNumber:
+            type: integer
     MetadataPatch:
       type: object
       properties:
@@ -207,6 +178,41 @@ components:
           - number
         description:
           type: string
+  responses:
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-C2BD5E131995442CABF255BCD
+            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
+            timestamp: '2023-05-31T02:07:58.447433023Z'
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-82DB4CF583054DF0930EDE9BE
+            errorMessage: An unexpected error occurred.
+            timestamp: '2023-05-31T02:42:40.087287033Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   securitySchemes:
     bearerAuth:
       type: http

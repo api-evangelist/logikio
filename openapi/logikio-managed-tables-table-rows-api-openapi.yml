@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Managed Tables Managed Tables > Table Rows API
+  title: Logik.io Admin API - Managed Tables Managed Tables > Table…
   version: 1.0.0
   description: Logik.io Admin API - Managed Tables Definition. These APIs can be used in headless implementations to perform administrative tasks
   contact:
@@ -62,6 +62,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: postApiManagedTablesV1ManagedTablesByTableName
+      x-operation-id-source: derived
   /api/managedTables/v1/managedTables/{tableName}/{rowId}:
     get:
       tags:
@@ -97,6 +99,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: getApiManagedTablesV1ManagedTablesByTableNameByRowId
+      x-operation-id-source: derived
     patch:
       tags:
       - Managed Tables > Table Rows
@@ -136,6 +140,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: patchApiManagedTablesV1ManagedTablesByTableNameByRowId
+      x-operation-id-source: derived
     delete:
       tags:
       - Managed Tables > Table Rows
@@ -166,7 +172,44 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/ServerError'
+      operationId: deleteApiManagedTablesV1ManagedTablesByTableNameByRowId
+      x-operation-id-source: derived
 components:
+  schemas:
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ColumnResponse:
+      type: object
+      allOf:
+      - properties:
+          DATE_MODIFIED:
+            type: string
+          DATE_CREATED:
+            type: string
+      - $ref: '#/components/schemas/ColumnWithId'
+    ColumnPatch:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnWithId'
+    ColumnWithId:
+      type: object
+      properties:
+        ID:
+          type: number
+        additionalProperties:
+          type: string
   responses:
     BadRequest:
       description: Bad request. See `errorMessage` for additional details.
@@ -188,8 +231,6 @@ components:
             errorCode: LGK-C2BD5E131995442CABF255BCD
             errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
             timestamp: '2023-05-31T02:07:58.447433023Z'
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -202,41 +243,8 @@ components:
             timestamp: '2023-05-31T02:42:40.087287033Z'
     NotAuthorized:
       description: Authorization information is missing or invalid.
-  schemas:
-    ColumnResponse:
-      type: object
-      allOf:
-      - properties:
-          DATE_MODIFIED:
-            type: string
-          DATE_CREATED:
-            type: string
-      - $ref: '#/components/schemas/ColumnWithId'
-    ErrorResponse:
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    ColumnWithId:
-      type: object
-      properties:
-        ID:
-          type: number
-        additionalProperties:
-          type: string
-    ColumnPatch:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ColumnWithId'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Logik Configurator Runtime APIs V2 Runtime - Bill of Materials API
+  title: Logik Configurator Runtime APIs V2 Runtime - Bill of…
   version: 2.1.0
-  description: "Logik.io End User API Definition. Shows payload structure and schema, authroization approach and endpoint format. Can be used for custom UI or headless implementations.\n\n## Important Versioning Information\n\nBlueprints that use Product Picker Fields ***must*** use the `application/vnd.logik.cfg-v2+json` Content-Type when making requests.\n\n The Runtime APIs are versioned using different Content-Types. There are 2 Content-Type formats, `application/json` for v1 and `application/vnd.logik.cfg-v2+json` for v2.\n  - `application/json`: can be used with regular Logik field types (number, boolean, text and picklist) and sets.\n  - `application/vnd.logik.cfg-v2+json`: can be used with all regular field types as well as Product Picker Fields.\n  \nThe Accept Header should match the Content-Type being used, either:\n  - `application/json`: for v1.\n  - `application/vnd.logik.cfg-v2+json, application/json`: for v2.\n"
+  description: Logik.io End User API Definition.
   contact:
     email: support@logik.io
 servers:
@@ -152,29 +152,6 @@ paths:
         5XX:
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
   schemas:
     ErrorResponse:
       type: object
@@ -321,15 +298,30 @@ components:
           type: number
         extPrice:
           type: number
+  responses:
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   parameters:
-    querySort:
-      in: query
-      name: sort
-      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
-      schema:
-        type: string
-        default: modified%2CDESC
-      required: true
     queryLimit:
       in: query
       name: limit
@@ -337,6 +329,22 @@ components:
       schema:
         type: number
         default: 100
+      required: true
+    queryPage:
+      in: query
+      name: page
+      description: Page number of results to return
+      schema:
+        type: number
+        default: 0
+      required: true
+    querySort:
+      in: query
+      name: sort
+      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
+      schema:
+        type: string
+        default: modified%2CDESC
       required: true
     headerOrigin:
       in: header
@@ -352,14 +360,6 @@ components:
       required: true
       schema:
         type: string
-    queryPage:
-      in: query
-      name: page
-      description: Page number of results to return
-      schema:
-        type: number
-        default: 0
-      required: true
   securitySchemes:
     RuntimeTokenBearerAuth:
       type: http

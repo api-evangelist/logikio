@@ -46,20 +46,7 @@ tools:
   source_operation: openapi/logikio-admin-blueprint-openapi-original.yml#/api/admin/v1/bulk/blueprints/export:post
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: unknown
   verified: derived
   tools: 12
-  checked: '2026-08-13'
-  source: catalog MCP census + web search 2026-08-13
-  note: >-
-    Logik.io ships NO MCP server of any kind — no hosted/remote endpoint and no
-    stdio package. Searched the docs (api-docs.logik.io), the GitHub org
-    (logikioopensource, 6 public repos, none MCP-related), npm and the public MCP
-    registries; the only ServiceNow-adjacent MCP servers found are third-party
-    community projects against the ServiceNow platform, not Logik.io CPQ, and are
-    deliberately NOT recorded here. The tools[] below are DERIVED candidates from
-    Logik.io's own OpenAPI operations, not a server anyone can call. No
-    ToolCrosswalk is emitted: there is no real MCP or GraphQL surface to bind to.
+  checked: '2026-08-12'
+  source: catalog MCP census

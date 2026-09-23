@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Logik.io Admin API - Blueprint Import/Export Blueprint > Export API
+  title: Logik.io Admin API - Blueprint Import/Export Blueprint >…
   description: APIs with which to import and export Logik.io Blueprints. Useful for taking backups and executing migrations among environments.
   version: 1.0.0
   contact:
@@ -56,6 +56,8 @@ paths:
                     type: string
                   status:
                     type: string
+      operationId: postApiAdminV1BulkBlueprintsExport
+      x-operation-id-source: derived
   /api/admin/v1/job/{jobId}:
     get:
       summary: Retrieve job details by ID
@@ -89,6 +91,8 @@ paths:
                     type: string
                   status:
                     type: string
+      operationId: getApiAdminV1JobByJobId
+      x-operation-id-source: derived
   /api/admin/v2/bulk/export/{jobId}:
     get:
       summary: Retrieve bulk export by job ID
@@ -115,6 +119,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      operationId: getApiAdminV2BulkExportByJobId
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

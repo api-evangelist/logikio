@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Logik Configurator Runtime APIs V2 Configuration (V2) API
   version: 2.1.0
-  description: "Logik.io End User API Definition. Shows payload structure and schema, authroization approach and endpoint format. Can be used for custom UI or headless implementations.\n\n## Important Versioning Information\n\nBlueprints that use Product Picker Fields ***must*** use the `application/vnd.logik.cfg-v2+json` Content-Type when making requests.\n\n The Runtime APIs are versioned using different Content-Types. There are 2 Content-Type formats, `application/json` for v1 and `application/vnd.logik.cfg-v2+json` for v2.\n  - `application/json`: can be used with regular Logik field types (number, boolean, text and picklist) and sets.\n  - `application/vnd.logik.cfg-v2+json`: can be used with all regular field types as well as Product Picker Fields.\n  \nThe Accept Header should match the Content-Type being used, either:\n  - `application/json`: for v1.\n  - `application/vnd.logik.cfg-v2+json, application/json`: for v2.\n"
+  description: Logik.io End User API Definition.
   contact:
     email: support@logik.io
 servers:
@@ -53,9 +53,7 @@ paths:
       tags:
       - Configuration (V2)
       summary: Get Configuration
-      description: 'Returns the Configuration state from the given Configuration UUID. This *does not* allow changes to made to the Configuration. To make changes, reconfigure using the POST call.
-
-        '
+      description: Returns the Configuration state from the given Configuration UUID. This *does not* allow changes to made to the Configuration. To make changes, reconfigure using the POST call.
       operationId: getConfigByUuidV2
       parameters:
       - $ref: '#/components/parameters/headerOrigin'
@@ -81,9 +79,7 @@ paths:
       tags:
       - Configuration (V2)
       summary: Update or Save Configuration
-      description: 'Update or Save Configuration with the provided Configuration UUID.
-
-        '
+      description: Update or Save Configuration with the provided Configuration UUID.
       operationId: updateConfigByUuidV2
       parameters:
       - $ref: '#/components/parameters/headerOrigin'
@@ -159,6 +155,88 @@ components:
         timestamp:
           type: string
           format: date-time
+    UpdateConfigV2:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              variableName:
+                type: string
+              value:
+                type: boolean
+              index:
+                type: number
+              set:
+                type: string
+              uniqueName:
+                type: string
+        responseState:
+          properties:
+            setPagination:
+              properties:
+                additionalProperties:
+                  required:
+                  - pageSize
+                  - pageNumber
+                  properties:
+                    pageSize:
+                      type: number
+                    pageNumber:
+                      type: number
+                  type: object
+              type: object
+            defaultPagination:
+              required:
+              - pageSize
+              - pageNumber
+              properties:
+                pageSize:
+                  type: number
+                  default: 10
+                pageNumber:
+                  type: number
+                  default: 0
+              type: object
+          type: object
+      example:
+        fields:
+        - variableName: cpuPicker.select
+          uniqueName: cpuPicker-1003-cpuPicker.select
+          value: true
+          set: cpuPicker
+          index: 3
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        selectionType:
+          type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
     InitConfigV2:
       type: object
       properties:
@@ -213,6 +291,22 @@ components:
         sessionContext:
           stateful: true
         productId: 01t6e000009bOeLAAU
+    Message:
+      required:
+      - error
+      - field
+      - message
+      - type
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        error:
+          type: boolean
+        field:
+          type: string
     Field:
       type: object
       properties:
@@ -251,131 +345,6 @@ components:
                     type: string
                   orderNumber:
                     type: integer
-    SetsContent:
-      type: object
-      properties:
-        index:
-          type: integer
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-    Message:
-      required:
-      - error
-      - field
-      - message
-      - type
-      type: object
-      properties:
-        message:
-          type: string
-        type:
-          type: string
-        error:
-          type: boolean
-        field:
-          type: string
-    SetsResponse:
-      type: object
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/SetsContent'
-        pageable:
-          type: object
-          properties:
-            sort:
-              type: object
-              properties:
-                empty:
-                  type: boolean
-                sorted:
-                  type: boolean
-                unsorted:
-                  type: boolean
-            offset:
-              type: integer
-            pageNumber:
-              type: integer
-            pageSize:
-              type: integer
-            paged:
-              type: boolean
-            unpaged:
-              type: boolean
-        totalPages:
-          type: integer
-        totalElements:
-          type: integer
-        last:
-          type: boolean
-        size:
-          type: integer
-        number:
-          type: integer
-        numberOfElements:
-          type: integer
-        first:
-          type: boolean
-        empty:
-          type: boolean
-        total:
-          type: integer
-    UpdateConfigV2:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            type: object
-            properties:
-              variableName:
-                type: string
-              value:
-                type: boolean
-              index:
-                type: number
-              set:
-                type: string
-              uniqueName:
-                type: string
-        responseState:
-          properties:
-            setPagination:
-              properties:
-                additionalProperties:
-                  required:
-                  - pageSize
-                  - pageNumber
-                  properties:
-                    pageSize:
-                      type: number
-                    pageNumber:
-                      type: number
-                  type: object
-              type: object
-            defaultPagination:
-              required:
-              - pageSize
-              - pageNumber
-              properties:
-                pageSize:
-                  type: number
-                  default: 10
-                pageNumber:
-                  type: number
-                  default: 0
-              type: object
-          type: object
-      example:
-        fields:
-        - variableName: cpuPicker.select
-          uniqueName: cpuPicker-1003-cpuPicker.select
-          value: true
-          set: cpuPicker
-          index: 3
     ConfigResponseV2:
       type: object
       properties:
@@ -1903,43 +1872,94 @@ components:
         - url: /blueprints/8/revisions/LATEST/layouts/1
           label: basic
           variableName: pickerGeneral_basic
-    Product:
+    SetsContent:
       type: object
       properties:
-        id:
-          type: string
-        selectionType:
-          type: string
-        quantity:
+        index:
           type: integer
-        bomType:
-          type: string
-        level:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    SetsResponse:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/SetsContent'
+        pageable:
+          type: object
+          properties:
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              type: integer
+            pageNumber:
+              type: integer
+            pageSize:
+              type: integer
+            paged:
+              type: boolean
+            unpaged:
+              type: boolean
+        totalPages:
           type: integer
-        parentProduct:
+        totalElements:
           type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
+        last:
+          type: boolean
+        size:
           type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
+        number:
+          type: integer
+        numberOfElements:
+          type: integer
+        first:
+          type: boolean
+        empty:
+          type: boolean
+        total:
+          type: integer
+  responses:
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    queryDelta:
-      name: delta
+    queryLimit:
       in: query
-      description: If `delta=true` the API only retruns changed data. This is default behavior of the API if the parameter is omitted.
+      name: limit
+      description: Size of the paged data results
       schema:
-        type: boolean
-        default: true
+        type: number
+        default: 100
+      required: true
     ConfigurationUUID:
       in: path
       name: uuid
@@ -1955,14 +1975,13 @@ components:
         type: string
         default: modified%2CDESC
       required: true
-    queryLimit:
+    queryDelta:
+      name: delta
       in: query
-      name: limit
-      description: Size of the paged data results
+      description: If `delta=true` the API only retruns changed data. This is default behavior of the API if the parameter is omitted.
       schema:
-        type: number
-        default: 100
-      required: true
+        type: boolean
+        default: true
     querySave:
       name: save
       in: query
@@ -1970,13 +1989,6 @@ components:
       schema:
         type: boolean
         default: false
-    headerOrigin:
-      in: header
-      name: Origin
-      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
-      schema:
-        type: string
-      required: true
     queryPage:
       in: query
       name: page
@@ -1985,29 +1997,13 @@ components:
         type: number
         default: 0
       required: true
-  responses:
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
+      required: true
   requestBodies:
     InitializeConfigurationV2:
       description: Initialization Payload

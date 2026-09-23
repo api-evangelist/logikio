@@ -208,6 +208,35 @@ components:
       properties:
         errorMessage:
           type: string
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        selectionType:
+          type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
     BOMResponse:
       type: object
       properties:
@@ -255,35 +284,6 @@ components:
           type: boolean
         total:
           type: integer
-    Product:
-      type: object
-      properties:
-        id:
-          type: string
-        selectionType:
-          type: string
-        quantity:
-          type: integer
-        bomType:
-          type: string
-        level:
-          type: integer
-        parentProduct:
-          type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
-          type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
   securitySchemes:
     BearerAuth:
       type: http

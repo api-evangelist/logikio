@@ -27,7 +27,8 @@
     "logikio-admin-blueprint-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "logikio-admin-managed-tables-openapi-original.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "logikio-runtime-v1-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "logikio-runtime-v2-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0"
+    "logikio-runtime-v2-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "logikio-blueprint-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
