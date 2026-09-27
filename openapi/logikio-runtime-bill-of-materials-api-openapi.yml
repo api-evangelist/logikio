@@ -305,12 +305,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -321,14 +315,26 @@ components:
       description: Authorization information is missing or invalid.
     Forbidden:
       description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    queryLimit:
-      in: query
-      name: limit
-      description: Size of the paged data results
+    ConfigurationUUID:
+      in: path
+      name: uuid
+      description: Unique Configuration ID Value
+      required: true
       schema:
-        type: number
-        default: 100
+        type: string
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
       required: true
     queryPage:
       in: query
@@ -346,20 +352,14 @@ components:
         type: string
         default: modified%2CDESC
       required: true
-    headerOrigin:
-      in: header
-      name: Origin
-      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+    queryLimit:
+      in: query
+      name: limit
+      description: Size of the paged data results
       schema:
-        type: string
+        type: number
+        default: 100
       required: true
-    ConfigurationUUID:
-      in: path
-      name: uuid
-      description: Unique Configuration ID Value
-      required: true
-      schema:
-        type: string
   securitySchemes:
     RuntimeTokenBearerAuth:
       type: http

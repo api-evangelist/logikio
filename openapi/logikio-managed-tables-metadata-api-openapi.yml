@@ -128,40 +128,6 @@ components:
         timestamp:
           type: string
           format: date-time
-    Column:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ColumnMetadata'
-      - properties:
-          orderNumber:
-            type: integer
-    MetadataPatch:
-      type: object
-      properties:
-        deleted:
-          type: array
-          items:
-            type: string
-        added:
-          type: array
-          items:
-            $ref: '#/components/schemas/Column'
-    ManagedTableCreateResponse:
-      properties:
-        dateCreated:
-          type: string
-        dateModified:
-          type: string
-        lastModifiedBy:
-          type: string
-        name:
-          type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/Column'
-        description:
-          type: string
     ColumnMetadata:
       type: object
       required:
@@ -178,6 +144,40 @@ components:
           - number
         description:
           type: string
+    Column:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ColumnMetadata'
+      - properties:
+          orderNumber:
+            type: integer
+    ManagedTableCreateResponse:
+      properties:
+        dateCreated:
+          type: string
+        dateModified:
+          type: string
+        lastModifiedBy:
+          type: string
+        name:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        description:
+          type: string
+    MetadataPatch:
+      type: object
+      properties:
+        deleted:
+          type: array
+          items:
+            type: string
+        added:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
   responses:
     BadRequest:
       description: Bad request. See `errorMessage` for additional details.
@@ -189,16 +189,6 @@ components:
             errorCode: LGK-7A407E7202264005AD03A14D9
             errorMessage: Rows must not be empty.
             timestamp: '2023-05-31T02:08:58.235882682Z'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-C2BD5E131995442CABF255BCD
-            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
-            timestamp: '2023-05-31T02:07:58.447433023Z'
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -213,6 +203,16 @@ components:
       description: Authorization information is missing or invalid.
     Forbidden:
       description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-C2BD5E131995442CABF255BCD
+            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
+            timestamp: '2023-05-31T02:07:58.447433023Z'
   securitySchemes:
     bearerAuth:
       type: http

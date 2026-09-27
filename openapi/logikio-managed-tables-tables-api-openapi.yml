@@ -132,15 +132,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ColumnResponse:
-      type: object
-      allOf:
-      - properties:
-          DATE_MODIFIED:
-            type: string
-          DATE_CREATED:
-            type: string
-      - $ref: '#/components/schemas/ColumnWithId'
     ErrorResponse:
       properties:
         errorCode:
@@ -150,6 +141,38 @@ components:
         timestamp:
           type: string
           format: date-time
+    ColumnWithId:
+      type: object
+      properties:
+        ID:
+          type: number
+        additionalProperties:
+          type: string
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
+    ColumnMetadata:
+      type: object
+      required:
+      - name
+      - description
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - text
+          - number
+        description:
+          type: string
     ManagedTableCreatePayload:
       required:
       - name
@@ -164,14 +187,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ColumnMetadata'
-    Sort:
+    Pageable:
       type: object
       properties:
-        empty:
+        sort:
+          $ref: '#/components/schemas/Sort'
+        offset:
+          type: number
+        pageNumber:
+          type: number
+        pageSize:
+          type: number
+        paged:
           type: boolean
-        unsorted:
-          type: boolean
-        sorted:
+        unpaged:
           type: boolean
     TableResponse:
       properties:
@@ -206,6 +235,31 @@ components:
       - properties:
           orderNumber:
             type: integer
+    ManagedTableCreateResponse:
+      properties:
+        dateCreated:
+          type: string
+        dateModified:
+          type: string
+        lastModifiedBy:
+          type: string
+        name:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        description:
+          type: string
+    ColumnResponse:
+      type: object
+      allOf:
+      - properties:
+          DATE_MODIFIED:
+            type: string
+          DATE_CREATED:
+            type: string
+      - $ref: '#/components/schemas/ColumnWithId'
     ManagedTableResponse:
       type: object
       properties:
@@ -285,60 +339,6 @@ components:
         first: true
         numberOfElements: 2
         empty: false
-    Pageable:
-      type: object
-      properties:
-        sort:
-          $ref: '#/components/schemas/Sort'
-        offset:
-          type: number
-        pageNumber:
-          type: number
-        pageSize:
-          type: number
-        paged:
-          type: boolean
-        unpaged:
-          type: boolean
-    ColumnWithId:
-      type: object
-      properties:
-        ID:
-          type: number
-        additionalProperties:
-          type: string
-    ManagedTableCreateResponse:
-      properties:
-        dateCreated:
-          type: string
-        dateModified:
-          type: string
-        lastModifiedBy:
-          type: string
-        name:
-          type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/Column'
-        description:
-          type: string
-    ColumnMetadata:
-      type: object
-      required:
-      - name
-      - description
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - text
-          - number
-        description:
-          type: string
   responses:
     BadRequest:
       description: Bad request. See `errorMessage` for additional details.
@@ -350,16 +350,6 @@ components:
             errorCode: LGK-7A407E7202264005AD03A14D9
             errorMessage: Rows must not be empty.
             timestamp: '2023-05-31T02:08:58.235882682Z'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-C2BD5E131995442CABF255BCD
-            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
-            timestamp: '2023-05-31T02:07:58.447433023Z'
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -374,6 +364,16 @@ components:
       description: Authorization information is missing or invalid.
     Forbidden:
       description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-C2BD5E131995442CABF255BCD
+            errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
+            timestamp: '2023-05-31T02:07:58.447433023Z'
   securitySchemes:
     bearerAuth:
       type: http

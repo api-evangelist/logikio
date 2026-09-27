@@ -176,6 +176,67 @@ components:
       properties:
         errorMessage:
           type: string
+    SetsContent:
+      type: object
+      properties:
+        index:
+          type: integer
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    Message:
+      required:
+      - error
+      - field
+      - message
+      - type
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        error:
+          type: boolean
+        field:
+          type: string
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        selectionType:
+          type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
+    FieldPayload:
+      type: object
+      properties:
+        variableName:
+          type: string
+        value:
+          type: string
     SetsResponse:
       type: object
       properties:
@@ -223,22 +284,6 @@ components:
           type: boolean
         total:
           type: integer
-    Message:
-      required:
-      - error
-      - field
-      - message
-      - type
-      type: object
-      properties:
-        message:
-          type: string
-        type:
-          type: string
-        error:
-          type: boolean
-        field:
-          type: string
     Field:
       type: object
       properties:
@@ -277,57 +322,6 @@ components:
                     type: string
                   orderNumber:
                     type: integer
-    UpdateConfig:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldPayload'
-    Product:
-      type: object
-      properties:
-        id:
-          type: string
-        selectionType:
-          type: string
-        quantity:
-          type: integer
-        bomType:
-          type: string
-        level:
-          type: integer
-        parentProduct:
-          type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
-          type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
-    relatedChangesValue:
-      type: object
-      properties:
-        key:
-          type: string
-        type:
-          type: string
-          description: Value of SET|PRODUCT which will return KEY value as variable name of set or static value products
-    FieldPayload:
-      type: object
-      properties:
-        variableName:
-          type: string
-        value:
-          type: string
     ApiResponse:
       type: object
       properties:
@@ -364,15 +358,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/relatedChangesValue'
-    SetsContent:
-      type: object
-      properties:
-        index:
-          type: integer
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
     InitConfig:
       type: object
       properties:
@@ -407,6 +392,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FieldPayload'
+    UpdateConfig:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldPayload'
+    relatedChangesValue:
+      type: object
+      properties:
+        key:
+          type: string
+        type:
+          type: string
+          description: Value of SET|PRODUCT which will return KEY value as variable name of set or static value products
   securitySchemes:
     BearerAuth:
       type: http
