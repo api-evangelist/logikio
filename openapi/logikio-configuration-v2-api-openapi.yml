@@ -146,114 +146,30 @@ paths:
         5XX:
           $ref: '#/components/responses/ServerError'
 components:
-  parameters:
-    querySave:
-      name: save
-      in: query
-      description: Pass save parameter as true to save the Configuration and send BOM to connected application
-      schema:
-        type: boolean
-        default: false
-    ConfigurationUUID:
-      in: path
-      name: uuid
-      description: Unique Configuration ID Value
-      required: true
-      schema:
-        type: string
-    querySort:
-      in: query
-      name: sort
-      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
-      schema:
-        type: string
-        default: modified%2CDESC
-      required: true
-    queryLimit:
-      in: query
-      name: limit
-      description: Size of the paged data results
-      schema:
-        type: number
-        default: 100
-      required: true
-    queryDelta:
-      name: delta
-      in: query
-      description: If `delta=true` the API only retruns changed data. This is default behavior of the API if the parameter is omitted.
-      schema:
-        type: boolean
-        default: true
-    headerOrigin:
-      in: header
-      name: Origin
-      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
-      schema:
-        type: string
-      required: true
-    queryPage:
-      in: query
-      name: page
-      description: Page number of results to return
-      schema:
-        type: number
-        default: 0
-      required: true
+  responses:
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Message:
-      required:
-      - error
-      - field
-      - message
-      - type
-      type: object
-      properties:
-        message:
-          type: string
-        type:
-          type: string
-        error:
-          type: boolean
-        field:
-          type: string
-    Field:
-      type: object
-      properties:
-        value:
-          type: string
-        dataType:
-          type: string
-        visibilityState:
-          type: string
-        editable:
-          type: string
-        variableName:
-          type: string
-        optionSet:
-          required:
-          - options
-          type: object
-          properties:
-            options:
-              type: array
-              items:
-                required:
-                - label
-                - orderNumber
-                - state
-                - value
-                type: object
-                properties:
-                  label:
-                    type: string
-                  state:
-                    type: string
-                  value:
-                    type: string
-                  imageUrl:
-                    type: string
-                  orderNumber:
-                    type: integer
     ConfigResponseV2:
       type: object
       properties:
@@ -1781,6 +1697,14 @@ components:
         - url: /blueprints/8/revisions/LATEST/layouts/1
           label: basic
           variableName: pickerGeneral_basic
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
     SetsContent:
       type: object
       properties:
@@ -1790,82 +1714,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Field'
-    SetsResponse:
+    UpdateConfigV2:
       type: object
       properties:
-        content:
+        fields:
           type: array
           items:
-            $ref: '#/components/schemas/SetsContent'
-        pageable:
-          type: object
+            type: object
+            properties:
+              variableName:
+                type: string
+              value:
+                type: boolean
+              index:
+                type: number
+              set:
+                type: string
+              uniqueName:
+                type: string
+        responseState:
           properties:
-            sort:
-              type: object
+            setPagination:
               properties:
-                empty:
-                  type: boolean
-                sorted:
-                  type: boolean
-                unsorted:
-                  type: boolean
-            offset:
-              type: integer
-            pageNumber:
-              type: integer
-            pageSize:
-              type: integer
-            paged:
-              type: boolean
-            unpaged:
-              type: boolean
-        totalPages:
-          type: integer
-        totalElements:
-          type: integer
-        last:
-          type: boolean
-        size:
-          type: integer
-        number:
-          type: integer
-        numberOfElements:
-          type: integer
-        first:
-          type: boolean
-        empty:
-          type: boolean
-        total:
-          type: integer
-    Product:
-      type: object
-      properties:
-        id:
-          type: string
-        selectionType:
-          type: string
-        quantity:
-          type: integer
-        bomType:
-          type: string
-        level:
-          type: integer
-        parentProduct:
-          type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
-          type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
+                additionalProperties:
+                  required:
+                  - pageSize
+                  - pageNumber
+                  properties:
+                    pageSize:
+                      type: number
+                    pageNumber:
+                      type: number
+                  type: object
+              type: object
+            defaultPagination:
+              required:
+              - pageSize
+              - pageNumber
+              properties:
+                pageSize:
+                  type: number
+                  default: 10
+                pageNumber:
+                  type: number
+                  default: 0
+              type: object
+          type: object
+      example:
+        fields:
+        - variableName: cpuPicker.select
+          uniqueName: cpuPicker-1003-cpuPicker.select
+          value: true
+          set: cpuPicker
+          index: 3
     InitConfigV2:
       type: object
       properties:
@@ -1920,90 +1821,189 @@ components:
         sessionContext:
           stateful: true
         productId: 01t6e000009bOeLAAU
-    ErrorResponse:
+    SetsResponse:
       type: object
       properties:
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    UpdateConfigV2:
-      type: object
-      properties:
-        fields:
+        content:
           type: array
           items:
-            type: object
-            properties:
-              variableName:
-                type: string
-              value:
-                type: boolean
-              index:
-                type: number
-              set:
-                type: string
-              uniqueName:
-                type: string
-        responseState:
-          properties:
-            setPagination:
-              properties:
-                additionalProperties:
-                  required:
-                  - pageSize
-                  - pageNumber
-                  properties:
-                    pageSize:
-                      type: number
-                    pageNumber:
-                      type: number
-                  type: object
-              type: object
-            defaultPagination:
-              required:
-              - pageSize
-              - pageNumber
-              properties:
-                pageSize:
-                  type: number
-                  default: 10
-                pageNumber:
-                  type: number
-                  default: 0
-              type: object
+            $ref: '#/components/schemas/SetsContent'
+        pageable:
           type: object
-      example:
-        fields:
-        - variableName: cpuPicker.select
-          uniqueName: cpuPicker-1003-cpuPicker.select
-          value: true
-          set: cpuPicker
-          index: 3
-  responses:
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+          properties:
+            sort:
+              type: object
+              properties:
+                empty:
+                  type: boolean
+                sorted:
+                  type: boolean
+                unsorted:
+                  type: boolean
+            offset:
+              type: integer
+            pageNumber:
+              type: integer
+            pageSize:
+              type: integer
+            paged:
+              type: boolean
+            unpaged:
+              type: boolean
+        totalPages:
+          type: integer
+        totalElements:
+          type: integer
+        last:
+          type: boolean
+        size:
+          type: integer
+        number:
+          type: integer
+        numberOfElements:
+          type: integer
+        first:
+          type: boolean
+        empty:
+          type: boolean
+        total:
+          type: integer
+    Field:
+      type: object
+      properties:
+        value:
+          type: string
+        dataType:
+          type: string
+        visibilityState:
+          type: string
+        editable:
+          type: string
+        variableName:
+          type: string
+        optionSet:
+          required:
+          - options
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                required:
+                - label
+                - orderNumber
+                - state
+                - value
+                type: object
+                properties:
+                  label:
+                    type: string
+                  state:
+                    type: string
+                  value:
+                    type: string
+                  imageUrl:
+                    type: string
+                  orderNumber:
+                    type: integer
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        selectionType:
+          type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
+    Message:
+      required:
+      - error
+      - field
+      - message
+      - type
+      type: object
+      properties:
+        message:
+          type: string
+        type:
+          type: string
+        error:
+          type: boolean
+        field:
+          type: string
+  parameters:
+    queryPage:
+      in: query
+      name: page
+      description: Page number of results to return
+      schema:
+        type: number
+        default: 0
+      required: true
+    querySave:
+      name: save
+      in: query
+      description: Pass save parameter as true to save the Configuration and send BOM to connected application
+      schema:
+        type: boolean
+        default: false
+    ConfigurationUUID:
+      in: path
+      name: uuid
+      description: Unique Configuration ID Value
+      required: true
+      schema:
+        type: string
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
+      required: true
+    queryDelta:
+      name: delta
+      in: query
+      description: If `delta=true` the API only retruns changed data. This is default behavior of the API if the parameter is omitted.
+      schema:
+        type: boolean
+        default: true
+    querySort:
+      in: query
+      name: sort
+      description: Sort field and order of the results, specify property and order{asc|desc} of sort in format field,asc[desc]
+      schema:
+        type: string
+        default: modified%2CDESC
+      required: true
+    queryLimit:
+      in: query
+      name: limit
+      description: Size of the paged data results
+      schema:
+        type: number
+        default: 100
+      required: true
   requestBodies:
     InitializeConfigurationV2:
       description: Initialization Payload

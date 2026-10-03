@@ -175,52 +175,7 @@ paths:
       operationId: deleteApiManagedTablesV1ManagedTablesByTableNameByRowId
       x-operation-id-source: derived
 components:
-  schemas:
-    ErrorResponse:
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    ColumnWithId:
-      type: object
-      properties:
-        ID:
-          type: number
-        additionalProperties:
-          type: string
-    ColumnPatch:
-      type: object
-      required:
-      - rows
-      properties:
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ColumnWithId'
-    ColumnResponse:
-      type: object
-      allOf:
-      - properties:
-          DATE_MODIFIED:
-            type: string
-          DATE_CREATED:
-            type: string
-      - $ref: '#/components/schemas/ColumnWithId'
   responses:
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-7A407E7202264005AD03A14D9
-            errorMessage: Rows must not be empty.
-            timestamp: '2023-05-31T02:08:58.235882682Z'
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -231,10 +186,16 @@ components:
             errorCode: LGK-82DB4CF583054DF0930EDE9BE
             errorMessage: An unexpected error occurred.
             timestamp: '2023-05-31T02:42:40.087287033Z'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
     NotFound:
       description: Resource was not found. See `errorMessage` for additional details.
       content:
@@ -245,6 +206,45 @@ components:
             errorCode: LGK-C2BD5E131995442CABF255BCD
             errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
             timestamp: '2023-05-31T02:07:58.447433023Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+  schemas:
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ColumnPatch:
+      type: object
+      required:
+      - rows
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnWithId'
+    ColumnWithId:
+      type: object
+      properties:
+        ID:
+          type: number
+        additionalProperties:
+          type: string
+    ColumnResponse:
+      type: object
+      allOf:
+      - properties:
+          DATE_MODIFIED:
+            type: string
+          DATE_CREATED:
+            type: string
+      - $ref: '#/components/schemas/ColumnWithId'
   securitySchemes:
     bearerAuth:
       type: http

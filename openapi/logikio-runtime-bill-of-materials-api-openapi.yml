@@ -153,14 +153,35 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
-    ErrorResponse:
+    Product:
       type: object
       properties:
-        errorMessage:
+        id:
           type: string
-        timestamp:
+        selectionType:
           type: string
-          format: date-time
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
     BOMResponse:
       type: object
       properties:
@@ -269,44 +290,29 @@ components:
           parentProduct: motherboard
           productFamily: Hardware
           effectiveParent: motherboard
-    Product:
+    ErrorResponse:
       type: object
       properties:
-        id:
+        errorMessage:
           type: string
-        selectionType:
+        timestamp:
           type: string
-        quantity:
-          type: integer
-        bomType:
-          type: string
-        level:
-          type: integer
-        parentProduct:
-          type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
-          type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
+          format: date-time
   responses:
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Bad request. See `errorMessage` for additional details.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    ServerError:
-      description: Unexpected Server Error.
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
       content:
         application/json:
           schema:
@@ -315,27 +321,7 @@ components:
       description: Authorization information is missing or invalid.
     Forbidden:
       description: Credentials are valid but insufficient privileges to perform the action on the resource.
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    ConfigurationUUID:
-      in: path
-      name: uuid
-      description: Unique Configuration ID Value
-      required: true
-      schema:
-        type: string
-    headerOrigin:
-      in: header
-      name: Origin
-      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
-      schema:
-        type: string
-      required: true
     queryPage:
       in: query
       name: page
@@ -344,6 +330,13 @@ components:
         type: number
         default: 0
       required: true
+    ConfigurationUUID:
+      in: path
+      name: uuid
+      description: Unique Configuration ID Value
+      required: true
+      schema:
+        type: string
     querySort:
       in: query
       name: sort
@@ -351,6 +344,13 @@ components:
       schema:
         type: string
         default: modified%2CDESC
+      required: true
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
       required: true
     queryLimit:
       in: query

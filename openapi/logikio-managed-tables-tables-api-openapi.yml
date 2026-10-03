@@ -132,22 +132,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    ColumnWithId:
-      type: object
-      properties:
-        ID:
-          type: number
-        additionalProperties:
-          type: string
     Sort:
       type: object
       properties:
@@ -173,20 +157,22 @@ components:
           - number
         description:
           type: string
-    ManagedTableCreatePayload:
-      required:
-      - name
-      - description
-      - columns
+    Column:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ColumnMetadata'
+      - properties:
+          orderNumber:
+            type: integer
+    ErrorResponse:
       properties:
-        name:
+        errorCode:
           type: string
-        description:
+        errorMessage:
           type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/ColumnMetadata'
+        timestamp:
+          type: string
+          format: date-time
     Pageable:
       type: object
       properties:
@@ -202,39 +188,6 @@ components:
           type: boolean
         unpaged:
           type: boolean
-    TableResponse:
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ColumnResponse'
-        pageable:
-          $ref: '#/components/schemas/Pageable'
-        totalPages:
-          type: number
-        totalElements:
-          type: number
-        last:
-          type: boolean
-        size:
-          type: number
-        number:
-          type: number
-        sort:
-          $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
-        numberOfElements:
-          type: number
-        empty:
-          type: boolean
-    Column:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ColumnMetadata'
-      - properties:
-          orderNumber:
-            type: integer
     ManagedTableCreateResponse:
       properties:
         dateCreated:
@@ -251,15 +204,6 @@ components:
             $ref: '#/components/schemas/Column'
         description:
           type: string
-    ColumnResponse:
-      type: object
-      allOf:
-      - properties:
-          DATE_MODIFIED:
-            type: string
-          DATE_CREATED:
-            type: string
-      - $ref: '#/components/schemas/ColumnWithId'
     ManagedTableResponse:
       type: object
       properties:
@@ -339,17 +283,63 @@ components:
         first: true
         numberOfElements: 2
         empty: false
+    ManagedTableCreatePayload:
+      required:
+      - name
+      - description
+      - columns
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnMetadata'
+    TableResponse:
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnResponse'
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        totalPages:
+          type: number
+        totalElements:
+          type: number
+        last:
+          type: boolean
+        size:
+          type: number
+        number:
+          type: number
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        numberOfElements:
+          type: number
+        empty:
+          type: boolean
+    ColumnWithId:
+      type: object
+      properties:
+        ID:
+          type: number
+        additionalProperties:
+          type: string
+    ColumnResponse:
+      type: object
+      allOf:
+      - properties:
+          DATE_MODIFIED:
+            type: string
+          DATE_CREATED:
+            type: string
+      - $ref: '#/components/schemas/ColumnWithId'
   responses:
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-7A407E7202264005AD03A14D9
-            errorMessage: Rows must not be empty.
-            timestamp: '2023-05-31T02:08:58.235882682Z'
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -360,10 +350,16 @@ components:
             errorCode: LGK-82DB4CF583054DF0930EDE9BE
             errorMessage: An unexpected error occurred.
             timestamp: '2023-05-31T02:42:40.087287033Z'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
     NotFound:
       description: Resource was not found. See `errorMessage` for additional details.
       content:
@@ -374,6 +370,10 @@ components:
             errorCode: LGK-C2BD5E131995442CABF255BCD
             errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
             timestamp: '2023-05-31T02:07:58.447433023Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   securitySchemes:
     bearerAuth:
       type: http
