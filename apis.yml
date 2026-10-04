@@ -187,6 +187,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/logikio-capability-edges.yml
+  name: Logik.io Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/servicenow/
   name: ServiceNow
