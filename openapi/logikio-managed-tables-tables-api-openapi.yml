@@ -132,14 +132,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Sort:
+    Pageable:
       type: object
       properties:
-        empty:
+        sort:
+          $ref: '#/components/schemas/Sort'
+        offset:
+          type: number
+        pageNumber:
+          type: number
+        pageSize:
+          type: number
+        paged:
           type: boolean
-        unsorted:
-          type: boolean
-        sorted:
+        unpaged:
           type: boolean
     ColumnMetadata:
       type: object
@@ -157,37 +163,6 @@ components:
           - number
         description:
           type: string
-    Column:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ColumnMetadata'
-      - properties:
-          orderNumber:
-            type: integer
-    ErrorResponse:
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    Pageable:
-      type: object
-      properties:
-        sort:
-          $ref: '#/components/schemas/Sort'
-        offset:
-          type: number
-        pageNumber:
-          type: number
-        pageSize:
-          type: number
-        paged:
-          type: boolean
-        unpaged:
-          type: boolean
     ManagedTableCreateResponse:
       properties:
         dateCreated:
@@ -297,6 +272,47 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ColumnMetadata'
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ColumnResponse:
+      type: object
+      allOf:
+      - properties:
+          DATE_MODIFIED:
+            type: string
+          DATE_CREATED:
+            type: string
+      - $ref: '#/components/schemas/ColumnWithId'
+    ColumnWithId:
+      type: object
+      properties:
+        ID:
+          type: number
+        additionalProperties:
+          type: string
+    Column:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ColumnMetadata'
+      - properties:
+          orderNumber:
+            type: integer
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
     TableResponse:
       properties:
         content:
@@ -323,23 +339,9 @@ components:
           type: number
         empty:
           type: boolean
-    ColumnWithId:
-      type: object
-      properties:
-        ID:
-          type: number
-        additionalProperties:
-          type: string
-    ColumnResponse:
-      type: object
-      allOf:
-      - properties:
-          DATE_MODIFIED:
-            type: string
-          DATE_CREATED:
-            type: string
-      - $ref: '#/components/schemas/ColumnWithId'
   responses:
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -350,16 +352,6 @@ components:
             errorCode: LGK-82DB4CF583054DF0930EDE9BE
             errorMessage: An unexpected error occurred.
             timestamp: '2023-05-31T02:42:40.087287033Z'
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-7A407E7202264005AD03A14D9
-            errorMessage: Rows must not be empty.
-            timestamp: '2023-05-31T02:08:58.235882682Z'
     NotFound:
       description: Resource was not found. See `errorMessage` for additional details.
       content:
@@ -372,8 +364,16 @@ components:
             timestamp: '2023-05-31T02:07:58.447433023Z'
     NotAuthorized:
       description: Authorization information is missing or invalid.
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
   securitySchemes:
     bearerAuth:
       type: http

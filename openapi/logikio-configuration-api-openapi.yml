@@ -171,13 +171,35 @@ paths:
       - BearerAuth: []
 components:
   schemas:
-    FieldPayload:
+    Product:
       type: object
       properties:
-        variableName:
+        id:
           type: string
-        value:
+        selectionType:
           type: string
+        quantity:
+          type: integer
+        bomType:
+          type: string
+        level:
+          type: integer
+        parentProduct:
+          type: integer
+        notes:
+          type: string
+        uniqueIdentifier:
+          type: integer
+        description:
+          type: string
+        externalId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+        extPrice:
+          type: number
     relatedChangesValue:
       type: object
       properties:
@@ -186,54 +208,27 @@ components:
         type:
           type: string
           description: Value of SET|PRODUCT which will return KEY value as variable name of set or static value products
-    UpdateConfig:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldPayload'
     ErrorResponse:
       type: object
       properties:
         errorMessage:
           type: string
-    ApiResponse:
+    Message:
+      required:
+      - error
+      - field
+      - message
+      - type
       type: object
       properties:
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        uuid:
+        message:
           type: string
-        revision:
-          type: integer
-        valid:
+        type:
+          type: string
+        error:
           type: boolean
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        productChange:
-          type: boolean
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        layouts:
-          type: array
-          items:
-            required:
-            - url
-            type: object
-            properties:
-              url:
-                type: string
-        relatedChanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/relatedChangesValue'
+        field:
+          type: string
     SetsResponse:
       type: object
       properties:
@@ -281,15 +276,47 @@ components:
           type: boolean
         total:
           type: integer
-    SetsContent:
+    InitConfig:
       type: object
       properties:
-        index:
-          type: integer
+        sessionContext:
+          type: object
+          properties:
+            stateful:
+              type: boolean
+        partnerData:
+          required:
+          - product
+          type: object
+          properties:
+            product:
+              type: object
+              properties:
+                configuredProductId:
+                  type: string
+                  description: Product id of the Product linked to Logik Blueprint
+                configurationAttributes:
+                  type: object
+                  properties:
+                    LGK__ConfigurationId__c:
+                      type: string
+                      description: Configuration Id which was generated for saved configuration
+        quote:
+          type: object
+          properties:
+            SBQQ__PricebookId__c:
+              type: string
         fields:
           type: array
           items:
-            $ref: '#/components/schemas/Field'
+            $ref: '#/components/schemas/FieldPayload'
+    FieldPayload:
+      type: object
+      properties:
+        variableName:
+          type: string
+        value:
+          type: string
     Field:
       type: object
       properties:
@@ -328,85 +355,58 @@ components:
                     type: string
                   orderNumber:
                     type: integer
-    Product:
+    ApiResponse:
       type: object
       properties:
-        id:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        uuid:
           type: string
-        selectionType:
-          type: string
-        quantity:
+        revision:
           type: integer
-        bomType:
-          type: string
-        level:
-          type: integer
-        parentProduct:
-          type: integer
-        notes:
-          type: string
-        uniqueIdentifier:
-          type: integer
-        description:
-          type: string
-        externalId:
-          type: string
-        name:
-          type: string
-        price:
-          type: number
-        extPrice:
-          type: number
-    InitConfig:
+        valid:
+          type: boolean
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        productChange:
+          type: boolean
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        layouts:
+          type: array
+          items:
+            required:
+            - url
+            type: object
+            properties:
+              url:
+                type: string
+        relatedChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/relatedChangesValue'
+    SetsContent:
       type: object
       properties:
-        sessionContext:
-          type: object
-          properties:
-            stateful:
-              type: boolean
-        partnerData:
-          required:
-          - product
-          type: object
-          properties:
-            product:
-              type: object
-              properties:
-                configuredProductId:
-                  type: string
-                  description: Product id of the Product linked to Logik Blueprint
-                configurationAttributes:
-                  type: object
-                  properties:
-                    LGK__ConfigurationId__c:
-                      type: string
-                      description: Configuration Id which was generated for saved configuration
-        quote:
-          type: object
-          properties:
-            SBQQ__PricebookId__c:
-              type: string
+        index:
+          type: integer
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    UpdateConfig:
+      type: object
+      properties:
         fields:
           type: array
           items:
             $ref: '#/components/schemas/FieldPayload'
-    Message:
-      required:
-      - error
-      - field
-      - message
-      - type
-      type: object
-      properties:
-        message:
-          type: string
-        type:
-          type: string
-        error:
-          type: boolean
-        field:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

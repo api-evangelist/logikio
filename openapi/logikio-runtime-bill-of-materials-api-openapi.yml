@@ -152,6 +152,29 @@ paths:
         5XX:
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource was not found. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
   schemas:
     Product:
       type: object
@@ -182,6 +205,14 @@ components:
           type: number
         extPrice:
           type: number
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
     BOMResponse:
       type: object
       properties:
@@ -290,53 +321,7 @@ components:
           parentProduct: motherboard
           productFamily: Hardware
           effectiveParent: motherboard
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-  responses:
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource was not found. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   parameters:
-    queryPage:
-      in: query
-      name: page
-      description: Page number of results to return
-      schema:
-        type: number
-        default: 0
-      required: true
-    ConfigurationUUID:
-      in: path
-      name: uuid
-      description: Unique Configuration ID Value
-      required: true
-      schema:
-        type: string
     querySort:
       in: query
       name: sort
@@ -345,13 +330,13 @@ components:
         type: string
         default: modified%2CDESC
       required: true
-    headerOrigin:
-      in: header
-      name: Origin
-      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+    ConfigurationUUID:
+      in: path
+      name: uuid
+      description: Unique Configuration ID Value
+      required: true
       schema:
         type: string
-      required: true
     queryLimit:
       in: query
       name: limit
@@ -359,6 +344,21 @@ components:
       schema:
         type: number
         default: 100
+      required: true
+    headerOrigin:
+      in: header
+      name: Origin
+      description: Request Origin, needs to be one of the allowed origins for the Runtime Token being used.
+      schema:
+        type: string
+      required: true
+    queryPage:
+      in: query
+      name: page
+      description: Page number of results to return
+      schema:
+        type: number
+        default: 0
       required: true
   securitySchemes:
     RuntimeTokenBearerAuth:

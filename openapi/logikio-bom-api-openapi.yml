@@ -203,6 +203,11 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
     Product:
       type: object
       properties:
@@ -232,11 +237,6 @@ components:
           type: number
         extPrice:
           type: number
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
     BOMResponse:
       type: object
       properties:

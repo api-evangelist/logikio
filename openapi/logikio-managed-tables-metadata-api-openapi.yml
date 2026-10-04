@@ -119,6 +119,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    MetadataPatch:
+      type: object
+      properties:
+        deleted:
+          type: array
+          items:
+            type: string
+        added:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
     ColumnMetadata:
       type: object
       required:
@@ -135,26 +146,6 @@ components:
           - number
         description:
           type: string
-    ErrorResponse:
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    MetadataPatch:
-      type: object
-      properties:
-        deleted:
-          type: array
-          items:
-            type: string
-        added:
-          type: array
-          items:
-            $ref: '#/components/schemas/Column'
     ManagedTableCreateResponse:
       properties:
         dateCreated:
@@ -171,6 +162,15 @@ components:
             $ref: '#/components/schemas/Column'
         description:
           type: string
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
     Column:
       type: object
       allOf:
@@ -179,6 +179,8 @@ components:
           orderNumber:
             type: integer
   responses:
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
     ServerError:
       description: Unexpected Server Error.
       content:
@@ -189,16 +191,6 @@ components:
             errorCode: LGK-82DB4CF583054DF0930EDE9BE
             errorMessage: An unexpected error occurred.
             timestamp: '2023-05-31T02:42:40.087287033Z'
-    BadRequest:
-      description: Bad request. See `errorMessage` for additional details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-7A407E7202264005AD03A14D9
-            errorMessage: Rows must not be empty.
-            timestamp: '2023-05-31T02:08:58.235882682Z'
     NotFound:
       description: Resource was not found. See `errorMessage` for additional details.
       content:
@@ -211,8 +203,16 @@ components:
             timestamp: '2023-05-31T02:07:58.447433023Z'
     NotAuthorized:
       description: Authorization information is missing or invalid.
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
+    BadRequest:
+      description: Bad request. See `errorMessage` for additional details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-7A407E7202264005AD03A14D9
+            errorMessage: Rows must not be empty.
+            timestamp: '2023-05-31T02:08:58.235882682Z'
   securitySchemes:
     bearerAuth:
       type: http
