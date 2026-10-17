@@ -171,6 +171,11 @@ paths:
       - BearerAuth: []
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
     Product:
       type: object
       properties:
@@ -200,19 +205,6 @@ components:
           type: number
         extPrice:
           type: number
-    relatedChangesValue:
-      type: object
-      properties:
-        key:
-          type: string
-        type:
-          type: string
-          description: Value of SET|PRODUCT which will return KEY value as variable name of set or static value products
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
     Message:
       required:
       - error
@@ -229,6 +221,129 @@ components:
           type: boolean
         field:
           type: string
+    Field:
+      type: object
+      properties:
+        value:
+          type: string
+        dataType:
+          type: string
+        visibilityState:
+          type: string
+        editable:
+          type: string
+        variableName:
+          type: string
+        optionSet:
+          required:
+          - options
+          type: object
+          properties:
+            options:
+              type: array
+              items:
+                required:
+                - label
+                - orderNumber
+                - state
+                - value
+                type: object
+                properties:
+                  label:
+                    type: string
+                  state:
+                    type: string
+                  value:
+                    type: string
+                  imageUrl:
+                    type: string
+                  orderNumber:
+                    type: integer
+    relatedChangesValue:
+      type: object
+      properties:
+        key:
+          type: string
+        type:
+          type: string
+          description: Value of SET|PRODUCT which will return KEY value as variable name of set or static value products
+    InitConfig:
+      type: object
+      properties:
+        sessionContext:
+          type: object
+          properties:
+            stateful:
+              type: boolean
+        partnerData:
+          required:
+          - product
+          type: object
+          properties:
+            product:
+              type: object
+              properties:
+                configuredProductId:
+                  type: string
+                  description: Product id of the Product linked to Logik Blueprint
+                configurationAttributes:
+                  type: object
+                  properties:
+                    LGK__ConfigurationId__c:
+                      type: string
+                      description: Configuration Id which was generated for saved configuration
+        quote:
+          type: object
+          properties:
+            SBQQ__PricebookId__c:
+              type: string
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldPayload'
+    FieldPayload:
+      type: object
+      properties:
+        variableName:
+          type: string
+        value:
+          type: string
+    ApiResponse:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        uuid:
+          type: string
+        revision:
+          type: integer
+        valid:
+          type: boolean
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        productChange:
+          type: boolean
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        layouts:
+          type: array
+          items:
+            required:
+            - url
+            type: object
+            properties:
+              url:
+                type: string
+        relatedChanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/relatedChangesValue'
     SetsResponse:
       type: object
       properties:
@@ -276,121 +391,6 @@ components:
           type: boolean
         total:
           type: integer
-    InitConfig:
-      type: object
-      properties:
-        sessionContext:
-          type: object
-          properties:
-            stateful:
-              type: boolean
-        partnerData:
-          required:
-          - product
-          type: object
-          properties:
-            product:
-              type: object
-              properties:
-                configuredProductId:
-                  type: string
-                  description: Product id of the Product linked to Logik Blueprint
-                configurationAttributes:
-                  type: object
-                  properties:
-                    LGK__ConfigurationId__c:
-                      type: string
-                      description: Configuration Id which was generated for saved configuration
-        quote:
-          type: object
-          properties:
-            SBQQ__PricebookId__c:
-              type: string
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldPayload'
-    FieldPayload:
-      type: object
-      properties:
-        variableName:
-          type: string
-        value:
-          type: string
-    Field:
-      type: object
-      properties:
-        value:
-          type: string
-        dataType:
-          type: string
-        visibilityState:
-          type: string
-        editable:
-          type: string
-        variableName:
-          type: string
-        optionSet:
-          required:
-          - options
-          type: object
-          properties:
-            options:
-              type: array
-              items:
-                required:
-                - label
-                - orderNumber
-                - state
-                - value
-                type: object
-                properties:
-                  label:
-                    type: string
-                  state:
-                    type: string
-                  value:
-                    type: string
-                  imageUrl:
-                    type: string
-                  orderNumber:
-                    type: integer
-    ApiResponse:
-      type: object
-      properties:
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        uuid:
-          type: string
-        revision:
-          type: integer
-        valid:
-          type: boolean
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        productChange:
-          type: boolean
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        layouts:
-          type: array
-          items:
-            required:
-            - url
-            type: object
-            properties:
-              url:
-                type: string
-        relatedChanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/relatedChangesValue'
     SetsContent:
       type: object
       properties:

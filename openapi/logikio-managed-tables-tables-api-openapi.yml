@@ -132,52 +132,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Pageable:
+    ErrorResponse:
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+    ColumnWithId:
       type: object
       properties:
-        sort:
-          $ref: '#/components/schemas/Sort'
-        offset:
+        ID:
           type: number
-        pageNumber:
-          type: number
-        pageSize:
-          type: number
-        paged:
-          type: boolean
-        unpaged:
-          type: boolean
-    ColumnMetadata:
-      type: object
-      required:
-      - name
-      - description
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - text
-          - number
-        description:
-          type: string
-    ManagedTableCreateResponse:
-      properties:
-        dateCreated:
-          type: string
-        dateModified:
-          type: string
-        lastModifiedBy:
-          type: string
-        name:
-          type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/Column'
-        description:
+        additionalProperties:
           type: string
     ManagedTableResponse:
       type: object
@@ -258,6 +227,15 @@ components:
         first: true
         numberOfElements: 2
         empty: false
+    ColumnResponse:
+      type: object
+      allOf:
+      - properties:
+          DATE_MODIFIED:
+            type: string
+          DATE_CREATED:
+            type: string
+      - $ref: '#/components/schemas/ColumnWithId'
     ManagedTableCreatePayload:
       required:
       - name
@@ -272,47 +250,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ColumnMetadata'
-    ErrorResponse:
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    ColumnResponse:
-      type: object
-      allOf:
-      - properties:
-          DATE_MODIFIED:
-            type: string
-          DATE_CREATED:
-            type: string
-      - $ref: '#/components/schemas/ColumnWithId'
-    ColumnWithId:
-      type: object
-      properties:
-        ID:
-          type: number
-        additionalProperties:
-          type: string
-    Column:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/ColumnMetadata'
-      - properties:
-          orderNumber:
-            type: integer
-    Sort:
-      type: object
-      properties:
-        empty:
-          type: boolean
-        unsorted:
-          type: boolean
-        sorted:
-          type: boolean
     TableResponse:
       properties:
         content:
@@ -339,19 +276,70 @@ components:
           type: number
         empty:
           type: boolean
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
+    ManagedTableCreateResponse:
+      properties:
+        dateCreated:
+          type: string
+        dateModified:
+          type: string
+        lastModifiedBy:
+          type: string
+        name:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        description:
+          type: string
+    ColumnMetadata:
+      type: object
+      required:
+      - name
+      - description
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - text
+          - number
+        description:
+          type: string
+    Column:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ColumnMetadata'
+      - properties:
+          orderNumber:
+            type: integer
+    Pageable:
+      type: object
+      properties:
+        sort:
+          $ref: '#/components/schemas/Sort'
+        offset:
+          type: number
+        pageNumber:
+          type: number
+        pageSize:
+          type: number
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
   responses:
-    Forbidden:
-      description: Credentials are valid but insufficient privileges to perform the action on the resource.
-    ServerError:
-      description: Unexpected Server Error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            errorCode: LGK-82DB4CF583054DF0930EDE9BE
-            errorMessage: An unexpected error occurred.
-            timestamp: '2023-05-31T02:42:40.087287033Z'
     NotFound:
       description: Resource was not found. See `errorMessage` for additional details.
       content:
@@ -362,8 +350,6 @@ components:
             errorCode: LGK-C2BD5E131995442CABF255BCD
             errorMessage: LOGIK_OBJECT 'OBJECT_VARIABLE_NAME' was not found.
             timestamp: '2023-05-31T02:07:58.447433023Z'
-    NotAuthorized:
-      description: Authorization information is missing or invalid.
     BadRequest:
       description: Bad request. See `errorMessage` for additional details.
       content:
@@ -374,6 +360,20 @@ components:
             errorCode: LGK-7A407E7202264005AD03A14D9
             errorMessage: Rows must not be empty.
             timestamp: '2023-05-31T02:08:58.235882682Z'
+    ServerError:
+      description: Unexpected Server Error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            errorCode: LGK-82DB4CF583054DF0930EDE9BE
+            errorMessage: An unexpected error occurred.
+            timestamp: '2023-05-31T02:42:40.087287033Z'
+    NotAuthorized:
+      description: Authorization information is missing or invalid.
+    Forbidden:
+      description: Credentials are valid but insufficient privileges to perform the action on the resource.
   securitySchemes:
     bearerAuth:
       type: http
